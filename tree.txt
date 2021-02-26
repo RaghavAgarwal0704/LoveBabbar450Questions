@@ -46,7 +46,28 @@ int height(struct Node* node){
 ---------------------------------------------------------------
 4. DIAMETER OF A TREE
 
+int diameterUtil(Node* root, int& h) {
+    if (!root) {
+        h = 0;
+        return 0;
+    }
+    int lh = 0, rh = 0;
+    int ld = diameterUtil(root->left, lh);
+    int rd = diameterUtil(root->right, rh);
+    h = max(lh, rh) + 1;
+    return max(rh + lh + 1, max(ld, rd));
+}
 
+int diameter(Node* root) {
+    if (!root) return 0;
+    /* 
+        Naïve approach : need to calculate height for every node seperately;
+        return max(height(root->left) + height(root->right) + 1, max(diameter(root->left), diameter(root->right)));
+    */
+    //Optimized soln
+    int h = 0;
+    return diameterUtil(root, h);
+}
 
 ---------------------------------------------------------------
 5. MIRROR OF A TREE
