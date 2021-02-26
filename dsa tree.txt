@@ -1,0 +1,120 @@
+1. LEVEL ORDER TRAVERSAL
+
+vector<int> levelOrder(Node * node){
+    if(node==nullptr)return vector<int>();
+    queue<Node*>q;
+    vector<int>vec;
+    q.push(node);
+    while(!q.empty()){
+        if(q.front()->left!=nullptr)q.push(q.front()->left);
+        if(q.front()->right!=nullptr)q.push(q.front()->right);
+        vec.push_back(q.front()->data);
+        q.pop();
+    }
+    return vec;
+}
+
+---------------------------------------------------------------
+2. REVERSE LEVEL ORDER TRAVERSAL
+
+vector<int> reverseLevelOrder(Node *root)
+{
+    queue<Node*>q;
+    vector<int>vec;
+    stack<int>s;
+    q.push(root);
+    while(!q.empty()){
+        if(q.front()->right!=nullptr)q.push(q.front()->right);
+        if(q.front()->left!=nullptr)q.push(q.front()->left);
+        s.push(q.front()->data);
+        q.pop();
+    }
+    while(!s.empty()){
+        vec.push_back(s.top());
+        s.pop();
+    }
+    return vec;
+}
+
+---------------------------------------------------------------
+3. HEIGHT OF A TREE
+
+int height(struct Node* node){
+        return node?1+max(height(node->left),height(node->right)):0;
+}
+
+---------------------------------------------------------------
+4. DIAMETER OF A TREE
+
+
+
+---------------------------------------------------------------
+5. MIRROR OF A TREE
+
+---------------------------------------------------------------
+6. INORDER TRAVERSAL(ITERATIVE)
+
+---------------------------------------------------------------
+7. INORDER TRAVERSAL (RECURSIVE)
+
+---------------------------------------------------------------
+8. PREORDER TRAVERSAL(ITERATIVE)
+
+---------------------------------------------------------------
+9. PREORDER TRAVERSAL(RECURSIVE)
+
+---------------------------------------------------------------
+10. POSTORDER TRAVERSAL (ITERATIVE)
+
+---------------------------------------------------------------
+11. POSTORDER TRAVERSAL (RECURSIVE)
+
+---------------------------------------------------------------
+12. LEFT VIEW OF TREE
+
+vector<int> leftView(Node *root)
+{
+   vector<int>vec;
+   queue<Node*>q;
+   q.push(root);
+   if(!root)return vec;
+   while(!q.empty()){
+       int size=q.size();
+       vec.push_back(q.front()->data);
+       while(size--){
+           Node *temp=q.front();
+           if(temp->left)q.push(temp->left);
+           if(temp->right)q.push(temp->right);
+           q.pop();
+       }
+   }
+   return vec;
+}
+
+---------------------------------------------------------------
+13. RIGHT VIEW OF TREE
+
+vector<int> leftView(Node *root)
+{
+   vector<int>vec;
+   queue<Node*>q;
+   q.push(root);
+   if(!root)return vec;
+   while(!q.empty()){
+       int size=q.size();
+       vec.push_back(q.front()->data);
+       while(size--){
+           Node *temp=q.front();
+           if(temp->right)q.push(temp->right);
+           if(temp->left)q.push(temp->left);
+           q.pop();
+       }
+   }
+   return vec;
+}
+
+---------------------------------------------------------------
+14. TOP VIEW OF TREE
+---------------------------------------------------------------
+15. BOTTOM VIEW OF TREE
+---------------------------------------------------------------
