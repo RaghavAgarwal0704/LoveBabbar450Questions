@@ -75,6 +75,23 @@ int diameter(Node* root) {
 ---------------------------------------------------------------
 6. INORDER TRAVERSAL(ITERATIVE)
 
+void inOrder(Node *root) {
+    stack<Node *> st;
+    st.push(root);
+    Node *node = st.top();
+
+    while (node || !st.empty()) {
+        if (node)
+            st.push(node), node = node->left;
+        else {
+            node = st.top();
+            cout << node->data << " ";
+            st.pop();
+            node = node->right;
+        }
+    }
+}
+
 ---------------------------------------------------------------
 7. INORDER TRAVERSAL (RECURSIVE)
 
