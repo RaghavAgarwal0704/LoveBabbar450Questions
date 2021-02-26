@@ -117,6 +117,20 @@ void preOrder(Node *root) {
 ---------------------------------------------------------------
 10. POSTORDER TRAVERSAL (ITERATIVE)
 
+void postOrder(Node *root) {
+    stack<Node *> st;
+    st.push(root);
+    vector<int> ans;
+    while (!st.empty()) {
+        Node *node = st.top();
+        ans.push_back(node->data);
+        st.pop();
+        if (node->left) st.push(node->left);
+        if (node->right) st.push(node->right);
+    }
+    for (auto i = ans.rbegin(); i != ans.rend(); i++) cout << *i << " ";
+}
+
 ---------------------------------------------------------------
 11. POSTORDER TRAVERSAL (RECURSIVE)
 
