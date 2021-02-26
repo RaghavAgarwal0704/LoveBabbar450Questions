@@ -98,6 +98,19 @@ void inOrder(Node *root) {
 ---------------------------------------------------------------
 8. PREORDER TRAVERSAL(ITERATIVE)
 
+
+void preOrder(Node *root) {
+    stack<Node *> st;
+    st.push(root);
+    while (!st.empty()) {
+        Node *node = st.top();
+        st.pop();
+        cout << node->data << " ";
+        if (node->right) st.push(node->right);
+        if (node->left) st.push(node->left);
+    }
+}
+
 ---------------------------------------------------------------
 9. PREORDER TRAVERSAL(RECURSIVE)
 
