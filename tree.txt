@@ -72,6 +72,16 @@ int diameter(Node* root) {
 ---------------------------------------------------------------
 5. MIRROR OF A TREE
 
+void mirror(Node *root) {
+    if (root == NULL)
+        return;
+    mirror(root->left);
+    mirror(root->right);
+    Node *temp = root->left;
+    root->left = root->right;
+    root->right = temp;
+}
+
 ---------------------------------------------------------------
 6A. INORDER TRAVERSAL(ITERATIVE) (Using stack)
 
