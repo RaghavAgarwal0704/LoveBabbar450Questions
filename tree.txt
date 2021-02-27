@@ -94,6 +94,12 @@ void inOrder(Node *root) {
 ---------------------------------------------------------------
 7. INORDER TRAVERSAL (RECURSIVE)
 
+void inOrder(Node* root){
+    inOrder(root->left);
+    cout<<root->data<<" ";
+    inOrder(root->right);
+}
+
 ---------------------------------------------------------------
 8. PREORDER TRAVERSAL(ITERATIVE)
 
@@ -112,6 +118,13 @@ void preOrder(Node *root) {
 
 ---------------------------------------------------------------
 9. PREORDER TRAVERSAL(RECURSIVE)
+
+void preOrder(Node* root){
+    cout<<root->data<<" ";
+    preOrder(root->left);
+    preOrder(root->right);
+}
+
 
 ---------------------------------------------------------------
 10. POSTORDER TRAVERSAL (ITERATIVE)
@@ -132,6 +145,12 @@ void postOrder(Node *root) {
 
 ---------------------------------------------------------------
 11. POSTORDER TRAVERSAL (RECURSIVE)
+
+void postOrder(Node* root){
+    postOrder(root->left);
+    postOrder(root->right);
+    cout<<root->data<<" ";
+}
 
 ---------------------------------------------------------------
 12. LEFT VIEW OF TREE
