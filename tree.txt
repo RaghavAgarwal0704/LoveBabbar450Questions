@@ -238,6 +238,21 @@ vector<int> zigzag(Node* root) {
 
 ---------------------------------------------------------------
 17. Check if tree is balanced
+
+bool utilBalanced(Node* root, int& ht) {
+    if (!root) return true;
+    int lh = 0;
+    bool lb = util(root->left, lh);
+    int rh = 0;
+    bool rb = util(root->right, rh);
+    ht = max(lh + 1, rh + 1);
+    return lb && rb && abs(lh - rh) <= 1;
+}
+bool isBalanced(Node* root) {
+    int ht = 0;
+    return util(root, ht);
+}
+
 ---------------------------------------------------------------
 18. diagonal traversal 
 ---------------------------------------------------------------
