@@ -76,9 +76,8 @@ int diameter(Node* root) {
 6. INORDER TRAVERSAL(ITERATIVE)
 
 void inOrder(Node *root) {
-    stack<Node *> st;
-    st.push(root);
-    Node *node = st.top();
+    stack <Node*> st;
+    Node* node=root;
 
     while (node || !st.empty()) {
         if (node)
