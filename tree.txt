@@ -73,7 +73,7 @@ int diameter(Node* root) {
 5. MIRROR OF A TREE
 
 ---------------------------------------------------------------
-6. INORDER TRAVERSAL(ITERATIVE)
+6A. INORDER TRAVERSAL(ITERATIVE) (Using stack)
 
 void inOrder(Node *root) {
     stack <Node*> st;
@@ -90,6 +90,8 @@ void inOrder(Node *root) {
         }
     }
 }
+
+6B. INORDER TRAVERSAL(ITERATIVE) (Without using stack-Morris traversal)
 
 ---------------------------------------------------------------
 7. INORDER TRAVERSAL (RECURSIVE)
