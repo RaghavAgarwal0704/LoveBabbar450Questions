@@ -35,8 +35,74 @@
 
 ---------------------------------------------------
 13. KADANE'S ALGORITHM
+
 ---------------------------------------------------
 14. Merge intervals
+
 --------------------------------------------------
 15. Next permutation
+
 --------------------------------------------------
+16. Count inversion.
+
+--------------------------------------------------
+17. Best time to buy and sell stock.
+
+--------------------------------------------------
+18. Find all pair of integers in array whose sum equal to given number.
+
+---------------------------------------------------------------------
+19. common element in 3 sorted arrays.
+
+------------------------------------------------------------------
+20. rearrange array with alternate positive and negative with o(1) extra space.
+
+-----------------------------------------------------------------------------
+21. find if there any subarray with sum equal to 0.
+
+----------------------------------------------------------
+22. facorial of a large number.
+
+----------------------------------------------------------
+23. Maximum product subarray.
+
+----------------------------------------------------------
+24. longest consecutive subsequence.
+
+----------------------------------------------------------
+25. array size n and number k, find all elements that appear more than n/k times.
+
+--------------------------------------------------------------------------------
+26. maximum profit by buying and selling a share atmost twice.
+
+--------------------------------------------------------------------------------
+27. find if an array is subset of another array.
+
+-------------------------------------------------------------------------------
+28. find triplet that sum to a given value.
+
+--------------------------------------------------------------------------------
+29. trapping rain water problem.
+
+-------------------------------------------------------------------------------
+30. chocolate distribution problem.
+
+-------------------------------------------------------------------------------
+31. smallest subarray with sum greater than a given value.
+
+-------------------------------------------------------------------------------
+32. three way partitioning of an array around a given value.
+
+-------------------------------------------------------------------------------
+33. Minimum swaps required bring elements less equal K together
+
+-------------------------------------------------------------------------------
+34. Minimum no. of operations required to make an array palindrome
+
+------------------------------------------------------------------------------
+35. Median of 2 sorted arrays of equal size
+
+------------------------------------------------------------------------------
+36. Median of 2 sorted arrays of different size
+
+-----------------------------------------------------------------------------
