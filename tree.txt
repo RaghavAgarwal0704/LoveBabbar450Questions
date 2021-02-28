@@ -210,8 +210,28 @@ vector<int> leftView(Node *root)
 
 ---------------------------------------------------------------
 14. TOP VIEW OF TREE
+
 ---------------------------------------------------------------
 15. BOTTOM VIEW OF TREE
+
+void utilBottomView(Node* root, int ht, int hz, map<int, pair<int, int>>& m) {
+    if (!root) return;
+    if (m.find(hz) == m.end())
+        m[hz] = pair<int, int>(root->data, ht);
+    else if (m[hz].second <= ht)
+        m[hz] = pair<int, int>(root->data, ht);
+    utilBottomView(root->left, ht + 1, hz - 1, m);
+    utilBottomView(root->right, ht + 1, hz + 1, m);
+}
+vector<int> bottomView(Node* root) {
+    //map => [horizontal dist](key) : {root->val, height}(value)
+    map<int, pair<int, int>> m;
+    utilBottomView(root, 0, 0, m);
+    vector<int> ans;
+    for (auto p : m) ans.push_back((p.second).first);
+    return ans;
+}
+
 ---------------------------------------------------------------
 16. Zigzag traversal
 
