@@ -1,0 +1,42 @@
+1. Reverse the array
+
+----------------------------------
+2. Find max and min in array
+
+----------------------------------
+3. Find Kth max and min in array
+
+----------------------------------
+4. Array contains 0,1,2 only. Sort without any algo.
+
+---------------------------------------------------
+5. Move all negative elements to one side.
+
+--------------------------------------------------
+6. Union and intersection of two sorted arrays.
+
+--------------------------------------------------
+7. Cyclically rotate array by one
+
+--------------------------------------------------
+8. Largest sum contiguous subarray
+
+--------------------------------------------------
+9. Minimise the maximize difference between heights.
+
+---------------------------------------------------
+10. Minimum no of jumps to reach array end.
+
+---------------------------------------------------
+11. Duplicate in an array of n+1 integers.
+
+---------------------------------------------------
+12. merge two sorted arrays without extra space.
+
+---------------------------------------------------
+13. KADANE'S ALGORITHM
+---------------------------------------------------
+14. Merge intervals
+--------------------------------------------------
+15. Next permutation
+--------------------------------------------------
