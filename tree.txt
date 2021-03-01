@@ -347,6 +347,21 @@ Node* bToDLL(Node* root) {
 ---------------------------------------------------------------
 24. Construct Binary tree from Inorder and preorder traversal
 
+Node* build(vector<int> preorder, vector<int> inorder) {
+    if (!preorder.size() || !inorder.size())
+        return NULL;
+    Node *root = new Node(preorder[0]);
+    int i = 0;
+    for (i = 0; i < inorder.size(); i++)
+        if (inorder[i] == root->val) break;
+    vector<int> left(inorder.begin(), inorder.begin() + i);
+    vector<int> right(inorder.begin() + i + 1, inorder.end());
+
+    root->left = build(vector<int>(preorder.begin() + 1, preorder.begin() + left.size() + 1), left);
+    root->right = build(vector<int>(preorder.begin() + left.size() + 1, preorder.end()), right);
+    return root;
+}
+
 ---------------------------------------------------------------
 25. Find minimum swaps required to convert a Binary tree into BST
 
