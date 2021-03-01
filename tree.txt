@@ -298,3 +298,61 @@ bool isBalanced(Node* root) {
 ---------------------------------------------------------------
 20. Boundary traversal
 ---------------------------------------------------------------
+21. Construct Binary Tree from String with Bracket Representation
+
+---------------------------------------------------------------
+22. Convert Binary tree into Doubly Linked List
+
+---------------------------------------------------------------
+23. Convert Binary tree into Sum tree
+
+---------------------------------------------------------------
+24. Construct Binary tree from Inorder and preorder traversal
+
+---------------------------------------------------------------
+25. Find minimum swaps required to convert a Binary tree into BST
+
+---------------------------------------------------------------
+26. Check if Binary tree is Sum tree or not
+
+---------------------------------------------------------------
+27. Check if all leaf nodes are at same level or not
+
+---------------------------------------------------------------
+28. Check if a Binary Tree contains duplicate subtrees of size 2 or more [ IMP ]
+
+---------------------------------------------------------------
+29. Check if 2 trees are mirror or not
+
+---------------------------------------------------------------
+30. Sum of Nodes on the Longest path from root to leaf node 
+
+---------------------------------------------------------------
+31. Check if given graph is tree or not.  [ IMP ]
+
+---------------------------------------------------------------
+32. Find Largest subtree sum in a tree
+
+---------------------------------------------------------------
+33. Maximum Sum of nodes in Binary tree such that no two are adjacent 
+
+---------------------------------------------------------------
+34. Print all "K" Sum paths in a Binary tree
+
+---------------------------------------------------------------
+35. Find LCA in a Binary tree
+
+---------------------------------------------------------------
+36. Find distance between 2 nodes in a Binary tree
+
+---------------------------------------------------------------
+37. Kth Ancestor of node in a Binary tree
+
+---------------------------------------------------------------
+38. Find all Duplicate subtrees in a Binary tree [ IMP ]
+
+---------------------------------------------------------------
+39. Tree Isomorphism Problem
+
+---------------------------------------------------------------
+
