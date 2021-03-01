@@ -295,6 +295,31 @@ bool isBalanced(Node* root) {
 18. diagonal traversal 
 ---------------------------------------------------------------
 19. Vertical traversal
+
+vector<int> verticalOrder(Node* root) {
+    map<int, queue<int>> m;
+    queue<pair<Node*, int>> q;
+    q.push(pair<Node*, int>(root, 0));
+    while (!q.empty()) {
+        int n = q.size();
+        while (n--) {
+            Node* temp = q.front().first;
+            int ht = q.front().second;
+            m[ht].push(temp->data);
+            q.pop();
+            if (temp->left) q.push(pair<Node*, int>(temp->left, ht - 1));
+            if (temp->right) q.push(pair<Node*, int>(temp->right, ht + 1));
+        }
+    }
+    vector<int> ans;
+    for (auto p : m)
+        while (!p.second.empty()) {
+            ans.push_back(p.second.front());
+            p.second.pop();
+        }
+    return ans;
+}
+
 ---------------------------------------------------------------
 20. Boundary traversal
 ---------------------------------------------------------------
