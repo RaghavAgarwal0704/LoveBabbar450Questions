@@ -328,6 +328,19 @@ vector<int> verticalOrder(Node* root) {
 ---------------------------------------------------------------
 22. Convert Binary tree into Doubly Linked List
 
+Node* bToDLL(Node* root) {
+    if (!root) return root;
+    Node* l = bToDLL(root->left);
+    while (l && l->right) l = l->right;
+    Node* r = bToDLL(root->right);
+    root->left = l;
+    if (l) l->right = root;
+    root->right = r;
+    if (r) r->left = root;
+    while (root && root->left) root = root->left;
+    return root;
+}
+
 ---------------------------------------------------------------
 23. Convert Binary tree into Sum tree
 
