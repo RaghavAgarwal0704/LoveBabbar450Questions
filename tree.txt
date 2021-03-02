@@ -386,6 +386,46 @@ Node* build(vector<int> preorder, vector<int> inorder) {
 ---------------------------------------------------------------
 29. Check if 2 trees are mirror or not
 
+//Iterative (BFS)
+bool isMirror(Node *root1, Node *root2) {
+    queue<Node *> q1;
+    queue<Node *> q2;
+    q1.push(root1);
+    q2.push(root2);
+    while (!q1.empty()) {
+        if (q1.size() != q2.size()) return false;
+        int n = q1.size();
+        vector<int> v1;
+        vector<int> v2;
+        while (n--) {
+            Node *node1 = q1.front();
+            Node *node2 = q2.front();
+            q1.pop();
+            q2.pop();
+            v1.push_back(node1 ? node1->data : -1);
+            v2.push_back(node2 ? node2->data : -1);
+            if (node1) {
+                q1.push(node1->left);
+                q1.push(node1->right);
+            }
+            if (node2) {
+                q2.push(node2->right);
+                q2.push(node2->left);
+            }
+        }
+        if (v1 != v2) return false;
+    }
+    return true;
+}
+// Recursive(DFS)
+bool isMirror(Node *root1, Node *root2) {
+    if (!root1 && !root2) return true;
+    if (root1 && root2)
+        return (root1->data == root2->data) && isMirror(root1->left, root2->right) && isMirror(root1->right, root2->left);
+
+    return false;
+}
+
 ---------------------------------------------------------------
 30. Sum of Nodes on the Longest path from root to leaf node 
 
