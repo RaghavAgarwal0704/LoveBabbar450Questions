@@ -344,6 +344,15 @@ Node* bToDLL(Node* root) {
 ---------------------------------------------------------------
 23. Convert Binary tree into Sum tree
 
+void toSumTree(Node *root) {
+    if (!root) return;
+    int l = (root->left ? root->left->data : 0);
+    int r = (root->right ? root->right->data : 0);
+    toSumTree(root->left);
+    toSumTree(root->right);
+    root->data = l + r + (root->left ? root->left->data : 0) + (root->right ? root->right->data : 0);
+}
+
 ---------------------------------------------------------------
 24. Construct Binary tree from Inorder and preorder traversal
 
