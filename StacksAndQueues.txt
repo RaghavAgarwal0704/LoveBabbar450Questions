@@ -1,5 +1,30 @@
 1. Implement Stack from Scratch
 
+class Stack {
+   private:
+    int top;
+
+   public:
+    int arr[INT_MAX];
+    Stack() { top = -1; }
+    int push(int x) {
+        if (++top >= INT_MAX) return INT_MIN;
+        arr[top] = x;
+        return x;
+    }
+    int pop() {
+        if (top < 0) return INT_MIN;
+        return arr[top--];
+    }
+    int topElement() {
+        if (top < 0) return INT_MIN;
+        return arr[top];
+    }
+    bool isEmpty() {
+        return top < 0;
+    }
+};
+
 -------------------------------------------------------------
 2. Implement Queue from Scratch
 
