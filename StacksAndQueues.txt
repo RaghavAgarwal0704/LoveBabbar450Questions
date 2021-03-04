@@ -66,6 +66,25 @@ bool validParenthesis(string x) {
 -------------------------------------------------------------
 9. Find the next Greater element
 
+vector<int> nextGreaterElement(vector<int> arr, int n) {
+    stack<int> s;
+    s.push(arr[n - 1]);
+    vector<int> ans(n, -1);
+    for (int i = n - 2; i >= 0; i--) {
+        if (arr[i] < s.top()) {
+            ans[i] = s.top();
+            s.push(arr[i]);
+        } else {
+            while (!s.empty() && arr[i] > s.top()) s.pop();
+            if (s.empty())
+                s.push(arr[i]);
+            else
+                ans[i] = s.top(), s.push(arr[i]);
+        }
+    }
+    return ans;
+}
+
 -------------------------------------------------------------
 10. The celebrity Problem
 
