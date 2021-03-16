@@ -101,11 +101,61 @@ void RearrangePosNeg(int arr[], int n)
 --------------------------------------------------
 6. Union and intersection of two sorted arrays.
 
+use map: time=m+n, space=m+n
+for constant space: sort and then proceed (mlogm+nlogn)
+code: https://www.geeksforgeeks.org/find-union-and-intersection-of-two-unsorted-arrays/
+
 --------------------------------------------------
 7. Cyclically rotate array by one
 
+void rotate(int arr[], int n) 
+{ 
+    int x = arr[n - 1], i; 
+    for (i = n - 1; i > 0; i--) 
+    arr[i] = arr[i - 1];  
+    arr[0] = x; 
+}
+
+what if want to cyclically rotate by some value d:
+
+REVERSAL ALGORITHM
+Let the array be arr[] = [1, 2, 3, 4, 5, 6, 7], d =2 and n = 7 
+A = [1, 2] and B = [3, 4, 5, 6, 7] 
+ 
+
+Reverse A, we get ArB = [2, 1, 3, 4, 5, 6, 7]
+Reverse B, we get ArBr = [2, 1, 7, 6, 5, 4, 3]
+Reverse all, we get (ArBr)r = [3, 4, 5, 6, 7, 1, 2]
+
+void reverseArray(int arr[], int start, int end) 
+{ 
+    while (start < end) { 
+        int temp = arr[start]; 
+        arr[start] = arr[end]; 
+        arr[end] = temp; 
+        start++; 
+        end--; 
+    } 
+} 
+  
+/* Function to left rotate arr[] of size n by d */
+void leftRotate(int arr[], int d, int n) 
+{ 
+    if (d == 0) 
+        return; 
+    // in case the rotating factor is 
+    // greater than array length 
+    d = d % n; 
+  
+    reverseArray(arr, 0, d - 1); 
+    reverseArray(arr, d, n - 1); 
+    reverseArray(arr, 0, n - 1); 
+} 
+
 --------------------------------------------------
 8. Largest sum contiguous subarray
+
+
 
 --------------------------------------------------
 9. Minimise the maximize difference between heights.
