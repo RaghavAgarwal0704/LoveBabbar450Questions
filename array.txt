@@ -1,5 +1,17 @@
 1. Reverse the array
 
+void rvereseArray(int arr[], int start, int end)
+{
+    if (start >= end)
+    return;
+     
+    int temp = arr[start]; 
+    arr[start] = arr[end];
+    arr[end] = temp;
+     
+    // Recursive Function calling
+    rvereseArray(arr, start + 1, end - 1); 
+}     
 ----------------------------------
 2. Find max and min in array
 
@@ -9,8 +21,82 @@
 ----------------------------------
 4. Array contains 0,1,2 only. Sort without any algo.
 
+void sort012(int a[], int arr_size) 
+{ 
+    int lo = 0; 
+    int hi = arr_size - 1; 
+    int mid = 0; 
+  
+    // Iterate till all the elements 
+    // are sorted 
+    while (mid <= hi) { 
+        switch (a[mid]) { 
+  
+        // If the element is 0 
+        case 0: 
+            swap(a[lo++], a[mid++]); 
+            break; 
+  
+        // If the element is 1 . 
+        case 1: 
+            mid++; 
+            break; 
+  
+        // If the element is 2 
+        case 2: 
+            swap(a[mid], a[hi--]); 
+            break; 
+        } 
+    } 
+} 
+
 ---------------------------------------------------
 5. Move all negative elements to one side.
+
+(i) Not in-place method(o(n))
+
+void shift(int arr[],int left,int right){
+  while(left<=right){
+  if(arr[left]<0){
+    if(arr[right]>0){left++;right--;}
+    else left++;
+  }
+  else{
+    if(arr[right]>0)right--;
+    else{
+      swap(arr[left++],arr[right--]);
+    }
+  }
+ }
+}
+
+(ii)in-place method (o(n),constant space)
+
+void RearrangePosNeg(int arr[], int n)
+{
+    int i = 0;
+    int j = n - 1;
+    while (true) {
+        // Loop until arr[i] < 0 and
+        // still inside the array
+        while (arr[i] < 0 && i < n)
+            i++;
+ 
+        // Loop until arr[j] > 0 and
+        // still inside the array
+        while (arr[j] > 0 && j >= 0)
+            j--;
+ 
+        // if i is less than j
+        if (i < j) {
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+        else
+            break;
+    }
+}
 
 --------------------------------------------------
 6. Union and intersection of two sorted arrays.
