@@ -166,6 +166,10 @@ void leftRotate(int arr[], int d, int n)
 ---------------------------------------------------
 11. Duplicate in an array of n+1 integers.
 
+can use another array/vector => linear time but non-constant space
+for constant space use Floyd's tortoise and hare(cycle detection) =>linear time constant space
+code: https://leetcode.com/problems/find-the-duplicate-number/solution/
+
 ---------------------------------------------------
 12. merge two sorted arrays without extra space.
 
