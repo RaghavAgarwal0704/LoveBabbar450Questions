@@ -1,16 +1,57 @@
 1. Reverse a String
 
+void reverseString(char[] s) {
+        int left = 0, right = s.length - 1;
+        while (left < right) {
+            char tmp = s[left];
+            s[left++] = s[right];
+            s[right--] = tmp;
+        }
+    }
 -----------------------------------------------
 2. Check whether a String is Palindrome or not
 
+void isPalindrome(char str[]) 
+{ 
+    // Start from leftmost and rightmost corners of str 
+    int l = 0; 
+    int h = strlen(str) - 1; 
+  
+    // Keep comparing characters while they are same 
+    while (h > l) 
+    { 
+        if (str[l++] != str[h--]) 
+        { 
+            printf("%s is Not Palindrome", str); 
+            return; 
+        } 
+    } 
+    printf("%s is palindrome", str); 
+} 
 -----------------------------------------------
 3. Find Duplicate characters in a string
+
+void printDups(string str)
+{
+    map<char, int> count;
+    for (int i = 0; i < str.length(); i++) {
+        count[str[i]]++;
+    }
+ 
+    for (auto it : count) {
+        if (it.second > 1)
+            cout << it.first << ", count = " << it.second
+                 << "\n";
+    }
+}
 
 -----------------------------------------------
 4. Why strings are immutable in Java?
 
 -----------------------------------------------
 5. Write a Code to check whether one string is a rotation of another
+
+
 
 -----------------------------------------------
 6. Write a Program to check whether a string is a valid shuffle of two strings or not
