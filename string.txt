@@ -49,15 +49,88 @@ void printDups(string str)
 4. Why strings are immutable in Java?
 
 -----------------------------------------------
-5. Write a Code to check whether one string is a rotation of another
+5.1 check if a string is substring of another
 
+naive: o(n^2)
+efficient: o(n)
+int strstr(string str, string target)
+    {
+ 
+        int t = 0;
+        int len = str.length();
+        int i;
+ 
+        // Iterate from 0 to len - 1
+        for (i = 0; i < len; i++) {
+            if (t == target.length())
+                break;
+            if (str[i] == target[t])
+                t++;
+            else
+                t = 0;
+        }
+ 
+        return t < target.length() ? -1 : i - t;
+    }
+-----------------------------------------------
+5.2 Write a Code to check whether one string is a rotation of another
 
+bool areRotations(string str1, string str2) 
+{ 
+   /* Check if sizes of two strings are same */
+   if (str1.length() != str2.length()) 
+        return false; 
+  
+   string temp = str1 + str1;  
+  if(strstr(temp,str2)==-1)return false;
+  return true;
+} 
 
 -----------------------------------------------
 6. Write a Program to check whether a string is a valid shuffle of two strings or not
 
+bool shuffleCheck(String first, String second, String result) {
+
+    // check length of result is same as
+    // sum of result of first and second
+    if(first.length() + second.length() != result.length()) {
+      return false;
+    }
+    // variables to track each character of 3 strings
+    int i = 0, j = 0, k = 0;
+
+    // iterate through all characters of result
+    while (k != result.length()) {
+
+      // check if first character of result matches with first character of first string
+      if (i < first.length() && first.charAt(i) == result.charAt(k))
+        i++;
+
+      // check if first character of result matches the first character of second string
+      else if (j < second.length() && second.charAt(j) == result.charAt(k))
+        j++;
+
+      // if the character doesn't match
+      else {
+        return false;
+      }
+
+      // access next character of result
+      k++;
+    }
+
+    // after accessing all characters of result
+    // if either first or second has some characters left
+    if(i < first.length() || j < second.length()) {
+      return false;
+    }
+
+    return true;
+  }
+
 -----------------------------------------------
 7. Count and Say problem
+
 
 -----------------------------------------------
 8. Write a program to find the longest Palindrome in a string.[ Longest palindromic Substring]
