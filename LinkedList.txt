@@ -20,6 +20,32 @@ RECURSIVE: todo
 ----------------------------------------------------------------------
 2. Reverse a Linked List in group of Given Size. [Very Imp]
 
+struct node *reverseList(struct node *head, int k) {
+    struct node *pre = NULL, *ptr = head, *temp = head;
+    while (k-- && ptr) {
+        temp = ptr->next;
+        ptr->next = pre;
+        pre = ptr;
+        ptr = temp;
+    }
+    head->next = ptr;
+    head = pre;
+    return head;
+}
+
+struct node *reverse(struct node *head, int k) {
+    struct node *temp = head;
+    struct node *t1, *t2 = NULL;
+    while (temp) {
+        t1 = temp;
+        temp = reverseList(temp, k);
+        t2 ? t2->next = temp : head = temp;
+        temp = t1->next;
+        t2 = t1;
+    }
+    return head;
+}
+
 ----------------------------------------------------------------------
 3. Write a program to Detect loop in a linked list.
 
