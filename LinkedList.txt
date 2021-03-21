@@ -15,7 +15,18 @@ struct Node* reverseList(struct Node *head)
       return prev;
 }
 
-RECURSIVE: todo
+RECURSIVE: pass 2 nodes to function prev and current node and make current->next = prev. Then recursive call the function with current node as prev node. And if current node is NULL return prev node
+Node* reverseUtil(Node* pre,Node* head){
+    if(!head) return pre;
+    Node* next=head->next;
+    head->next=pre;
+    return reverseUtil(head,next);
+}
+Node *reverseList(Node *head)
+{
+    return reverseUtil(NULL,head);
+}
+
 
 ----------------------------------------------------------------------
 2. Reverse a Linked List in group of Given Size. [Very Imp]
