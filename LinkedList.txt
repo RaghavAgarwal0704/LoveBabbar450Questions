@@ -245,6 +245,42 @@ see: https://www.geeksforgeeks.org/add-one-to-a-number-represented-as-linked-lis
 ----------------------------------------------------------------------
 10. Add two numbers represented by linked lists.
 
+Node* reverseUtil(Node* pre,Node* head){
+    if(!head) return pre;
+    Node* next=head->next;
+    head->next=pre;
+    return reverseUtil(head,next);
+}
+Node *addTwoLists(Node *first, Node *second)
+{
+    int carry=0;
+    Node* head=NULL;
+    Node *ptr=head;
+    while(first && second){
+        int sum=first->data+second->data+carry;
+        carry=sum/10;
+        if(!head) head=new Node(sum%10),ptr=head;
+        else ptr->next=new Node(sum%10),ptr=ptr->next;
+        first=first->next;
+        second=second->next;
+    }
+    while(first){
+        int sum=first->data+carry;
+        carry=sum/10;
+        if(!head) head=new Node(sum%10),ptr=head;
+        else ptr->next=new Node(sum%10),ptr=ptr->next;
+        first=first->next;
+    }
+    while(second){
+        int sum=second->data+carry;
+        carry=sum/10;
+        if(!head) head=new Node(sum%10),ptr=head;
+        else ptr->next=new Node(sum%10),ptr=ptr->next;
+        second=second->next;
+    }
+    if (carry) ptr->next = new Node(carry);
+    return  reverseUtil(NULL,head);
+}
 
 ----------------------------------------------------------------------
 11. Intersection of two Sorted Linked List.
