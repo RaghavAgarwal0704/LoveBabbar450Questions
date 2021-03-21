@@ -155,7 +155,16 @@ void leftRotate(int arr[], int d, int n)
 --------------------------------------------------
 8. Largest sum contiguous subarray
 
-
+int maxSubarraySum(int arr[], int n) {
+    int sum = 0, max_sum = 0, max_ele = INT_MIN;
+    for (int i = 0; i < n; i++) {
+        sum += arr[i];
+        if (sum < 0) sum = 0;
+        max_sum = max(sum, max_sum);
+        max_ele = max(max_ele, arr[i]);
+    }
+    return max_sum ? max_sum : max_ele;
+}
 
 --------------------------------------------------
 9. Minimise the maximize difference between heights.
