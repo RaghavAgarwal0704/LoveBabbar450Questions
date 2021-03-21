@@ -135,6 +135,7 @@ void moveToFront(Node **head_ref)
 ----------------------------------------------------------------------
 9. Add “1” to a number represented as a Linked List.
 
+(1) Reversing the linked list then adding 1 to head and carry to next nodes and then reversing again.
 Node *reverse(Node *head)
 {
         Node *prev=NULL,*curr=head,*next=NULL;
@@ -171,6 +172,26 @@ Node* addOne(Node *head)
         return(reverse(util(reverse(head))));
 }
 
+(2) Backtracking approach : Reach the last node and increment by 1 and update carry. Then add carry to the nodes and update carry. 
+Node* util(Node* head,int &carry){
+        if(!head) return head;
+        head->next=util(head->next,carry);
+        head->data+=(head->next==NULL)?1:carry;
+        carry=head->data/10;
+        head->data%=10;
+        return head;
+    }
+Node* addOne(Node *head) 
+{
+    int carry=0;
+    head=util(head,carry);
+    if(carry==1) {
+        Node* temp=head;
+        head=new Node(1);
+        head->next=temp;
+    }
+    return head;
+}
 see: https://www.geeksforgeeks.org/add-one-to-a-number-represented-as-linked-list-set-2/?ref=rp
 ----------------------------------------------------------------------
 10. Add two numbers represented by linked lists.
