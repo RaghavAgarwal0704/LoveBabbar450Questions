@@ -3,16 +3,17 @@
 first solve using stack but then it uses extra data structure, next solve using recursion but here also extra space of stack call, finally solve iteratively.
 ITERATIVE:(solved using 3 pointers, practice using 2 pointers using xor)
 struct Node* reverseList(struct Node *head)
-    {
-        struct Node* curr=head,*next=NULL,*prev=NULL;
-        while(curr!=NULL){
+{
+      struct Node* curr=head,*next=NULL,*prev=NULL;
+      while(curr!=NULL)
+      {
             next=curr->next;
             curr->next=prev;
             prev=curr;
             curr=next;
-        }
-        return prev;
-    }
+      }
+      return prev;
+}
 
 RECURSIVE: todo
 
@@ -30,6 +31,21 @@ RECURSIVE: todo
 
 ----------------------------------------------------------------------
 6. Remove Duplicates in a sorted Linked List.
+
+Node *removeDuplicates(Node *head)
+{
+ Node* curr=head;
+ while(curr&&curr->next){
+     if(curr->data==curr->next->data)
+     {
+            Node *temp=curr->next->next;
+            free(curr->next);
+            curr->next=temp;
+     }
+     else curr=curr->next;
+ }
+ return head;
+}
 
 ----------------------------------------------------------------------
 7. Remove Duplicates in a Un-sorted Linked List.
