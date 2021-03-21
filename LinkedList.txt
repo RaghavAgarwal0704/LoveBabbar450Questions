@@ -288,6 +288,20 @@ Node *addTwoLists(Node *first, Node *second)
 ----------------------------------------------------------------------
 12. Intersection Point of two Linked Lists.
 
+int intersectPoint(Node *head1, Node *head2) {
+    Node *t1 = head1, *t2 = head2;
+    while (t1 && t2)
+        t1 = t1->next, t2 = t2->next;
+
+    while (t1) t1 = t1->next, head1 = head1->next;
+    while (t2) t2 = t2->next, head2 = head2->next;
+    while (head1 && head2) {
+        if (head1 == head2) return head1->data;
+        head1 = head1->next, head2 = head2->next;
+    }
+    return -1;
+}
+
 ----------------------------------------------------------------------
 13. Merge Sort For Linked lists.[Very Important]
 
