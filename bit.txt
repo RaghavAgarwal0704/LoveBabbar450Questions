@@ -1,13 +1,34 @@
-1. Count set bits in an integer
+1. Count set bits in an integer--o(logn)
 
+int setBits(int n) {
+        // Write Your Code here
+        int c=0;
+        while(n){
+            c+=n&1;
+            n=n>>1;
+        }
+        return c;
+    }
 ----------------------------------------------
 2. Find the two non-repeating elements in an array of repeating elements
 
 ----------------------------------------------
 3. Count number of bits to be flipped to convert A to B
 
+int countBitsFlip(int a, int b){
+        
+        // Your logic here
+        int n=a^b,c=0;
+        while(n){
+            c+=n&1;
+            n>>=1;
+        }
+        return c;
+    }
+
 ----------------------------------------------
 4. Count total set bits in all numbers from 1 to n
+
 
 ----------------------------------------------
 5. Program to find whether a no is power of two
