@@ -307,6 +307,39 @@ Node* findIntersection(Node* head1, Node* head2)
 ----------------------------------------------------------------------
 12. Intersection Point of two Linked Lists.
 
+method 1: using two loops--naive time o(n*m) space o(1)
+
+ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        while (headA != nullptr) {
+            ListNode *pB = headB;
+            while (pB != nullptr) {
+                if (headA == pB) return headA;
+                pB = pB->next;
+            }
+            headA = headA->next;
+        }
+        return nullptr;
+}
+
+
+method 2: using set--> time o(n+m) space o(n)
+
+ListNode *getIntersectionNode(ListNode *head1, ListNode *head2) {
+        unordered_set<ListNode*>s;
+        while(head1){
+            s.insert(head1);
+            head1=head1->next;
+        }
+        while(head2){
+            if(s.find(head2)!=s.end())return head2;
+            head2=head2->next;
+        }
+        return NULL;
+}
+
+method 3: time o(m+n) space o(1)
+one list is longer then other so first reach end of the shorter list next traverse move ahead the head of the longer list by that many nodes as there are extra nodes in that list. so now head1 and head2 both have same no of nodes...
+
 int intersectPoint(Node *head1, Node *head2) {
     Node *t1 = head1, *t2 = head2;
     while (t1 && t2)
