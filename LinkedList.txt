@@ -381,11 +381,58 @@ ListNode* middleNode(ListNode* head)
 ----------------------------------------------------------------------
 16. Check if a linked list is a circular linked list.
 
+bool isCircular(Node *head)
+{
+   Node *curr=head->next;
+   while(curr){
+       if(curr==head)return 1;
+       curr=curr->next;
+   }
+   return 0;
+}
+
 ----------------------------------------------------------------------
 17. Split a Circular linked list into two halves.
 
+
+
 ----------------------------------------------------------------------
 18. Write a Program to check whether the Singly Linked list is a palindrome or not.
+
+method 1: use stack--naive time o(n) space o(n)
+
+
+method 2: time o(n) space o(1)
+
+void reverse(Node **head){
+    Node* curr=*head,*next=NULL,*prev=NULL;
+      while(curr!=NULL)
+      {
+            next=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=next;
+      }
+      *head=prev;
+}
+bool isPalindrome(Node *head)
+{
+    //Your code here
+    Node*curr=head;
+    int n=0,t=0;
+    while(curr){
+        n=n*10+curr->data;
+        curr=curr->next;
+    }
+    reverse(&head);
+    curr=head;
+    while(curr){
+        t=t*10+curr->data;
+        curr=curr->next;
+    }
+    reverse(&head);
+    return t==n;
+}
 
 ----------------------------------------------------------------------
 19. Deletion from a Circular Linked List.
