@@ -357,6 +357,33 @@ int intersectPoint(Node *head1, Node *head2) {
 ----------------------------------------------------------------------
 13. Merge Sort For Linked lists.[Very Important]
 
+Node* merge(Node* head1, Node* head2) {
+    if (!head1) return head2;
+    if (!head2) return head1;
+    if (head1->data >= head2->data) {
+        head2->next = merge(head2->next, head1);
+        return head2;
+    } else {
+        head1->next = merge(head1->next, head2);
+        return head1;
+    }
+    return NULL;
+}
+
+public:
+Node* mergeSort(Node* head) {
+    if (!head || !head->next) return head;
+    Node* slow = head;
+    Node* fast = head;
+    while (fast && fast->next && fast->next->next) slow = slow->next, fast = fast->next->next;
+    Node* head2  = slow->next;
+    slow->next = NULL;
+    head = mergeSort(head);
+    head2 = mergeSort(head2);
+    head = merge(head, head2);
+    return head;
+}
+
 ----------------------------------------------------------------------
 14. Quicksort for Linked Lists.[Very Important]
 
