@@ -37,6 +37,25 @@ int maxMeetings(int start[], int end[], int n) {
 -----------------------------------------------------
 8. Minimum Platforms Problem
 
+typedef pair<int, int> pi;
+int findPlatform(int arr[], int dep[], int n) {
+    vector<pi> v;
+    for (int i = 0; i < n; i++) v.push_back(pi(arr[i], dep[i]));
+    sort(v.begin(), v.end(), [](const pi& a, const pi& b) {
+            return a.second < b.second;
+    });
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        int temp = 1;
+        for (int j = i + 1; j < n; j++) {
+            if (v[j].first <= v[i].second) temp++;
+        }
+        ans = max(ans, temp);
+        if (ans == n) return ans;
+    }
+    return ans;
+}
+
 -----------------------------------------------------
 9. Buy Maximum Stocks if i stocks can be bought on i-th day
 
