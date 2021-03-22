@@ -485,6 +485,54 @@ bool isPalindrome(Node *head)
 ----------------------------------------------------------------------
 35. Program for n’th node from the end of a Linked List
 
+method 1: using length of linked list--naive time n space 1 but two pass
+
+int getLen(Node *head){
+    int count=0;
+    while(head){
+        count++;
+        head=head->next;
+    }
+    //cout<<"count"<<count<<endl;
+    return count;
+}
+int getNthFromLast(Node *head, int n)
+{
+       // Your code here
+       int len=getLen(head);
+       if(n>len)return -1;
+       int l=len-n+1;
+       Node *temp=head;
+       while(--l){
+           //cout<<l<<endl;
+           temp=temp->next;
+       }
+       //cout<<"after"<<l<<endl;
+       return temp->data;
+}
+
+
+
+method 2: using two pointers--time n space 1 single pass
+
+int getNthFromLast(Node *head, int n)
+{
+    Node *ref=head,*main=head;
+    if(!head)return -1;
+    int count=0;
+    while(count<n){
+        if(ref==NULL)return -1;
+        ref=ref->next;
+        count++;
+    }
+    while(ref){
+        main=main->next;
+        ref=ref->next;
+    }
+    return main->data;
+}
+
+
 ----------------------------------------------------------------------
 36. Find the first non-repeating character from a stream of characters
 
