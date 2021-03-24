@@ -267,6 +267,37 @@ int getPairsCount(int arr[], int n, int k) {
 ---------------------------------------------------------------------
 19. common element in 3 sorted arrays.
 
+1) Naīve method : using O(n1+n2) space and O(n1+n2+n3) time
+vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+{
+    unordered_map<int,int>m1;
+    unordered_map<int,int>m2;
+    for(int i=0;i<n1;i++) m1[A[i]]++;
+    for(int i=0;i<n2;i++) m2[B[i]]++;
+    vector<int>ans;
+    for(int i=0;i<n3;i++)
+        if(m1[C[i]] && m2[C[i]]) if(!ans.size()|| ans.back()!=C[i]) ans.push_back(C[i]);
+    return ans;
+}
+
+2) Better method : using O(1) space and O(n1+n2+n3) time
+vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+{
+    int i=0,j=0,k=0;
+    vector<int>ans;
+    while(i<n1 && j<n2 && k<n3){
+        if(A[i]==B[j] && B[j]==C[k]) 
+            if(!ans.size() || ans.back()!=A[i]) 
+                ans.push_back(A[i]);
+        
+        int x=min(A[i],min(B[j],C[k]));
+        if(A[i]==x) i++;
+        else if(B[j]==x) j++;
+        else k++;
+    }
+    return ans;
+}
+
 ------------------------------------------------------------------
 20. rearrange array with alternate positive and negative with o(1) extra space.
 
