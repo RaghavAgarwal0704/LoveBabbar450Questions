@@ -239,6 +239,16 @@ vector<vector<int>> merge(vector<vector<int>>& intervals) {
 --------------------------------------------------
 17. Best time to buy and sell stock.
 
+int maxProfit(vector<int>& prices) {
+    int ans=0;
+    int minPrice=INT_MAX;
+    for(int i:prices){
+        if(i<minPrice) minPrice=i;
+        else if(i-minPrice>ans) ans=i-minPrice;
+    }
+    return ans;
+}
+
 --------------------------------------------------
 18. Find all pair of integers in array whose sum equal to given number.
 
