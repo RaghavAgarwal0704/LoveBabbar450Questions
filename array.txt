@@ -252,6 +252,18 @@ int maxProfit(vector<int>& prices) {
 --------------------------------------------------
 18. Find all pair of integers in array whose sum equal to given number.
 
+int getPairsCount(int arr[], int n, int k) {
+    // code here
+    unordered_map<int,int>m;
+    int ans=0;
+    m[arr[0]]++;
+    for(int i=1;i<n;i++){
+        if(m[k-arr[i]]) ans+=m[k-arr[i]];
+        m[arr[i]]++;
+    }
+    return ans;
+}
+
 ---------------------------------------------------------------------
 19. common element in 3 sorted arrays.
 
