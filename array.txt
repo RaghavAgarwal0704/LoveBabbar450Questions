@@ -301,6 +301,42 @@ vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
 ------------------------------------------------------------------
 20. rearrange array with alternate positive and negative with o(1) extra space.
 
+1) Naīve appraoch : O(n) space, O(n) time.
+void rearrange(int arr[], int n) {
+    vector<int> p;
+    vector<int> neg;
+    for (int i = 0; i < n; i++)
+        if (arr[i] >= 0)
+            p.push_back(arr[i]);
+        else
+            neg.push_back(arr[i]);
+    int l = 0, r = 0;
+    for (int i = 0; i < n; i++) {
+        if (i & 1)
+            arr[i] = l < neg.size() ? neg[l++] : p[r++];
+        else
+            arr[i] = r < p.size() ? p[r++] : neg[l++];
+    }
+}
+2) Efficient approach: O(1) space, ?? time
+void rearrange(int arr[], int n) {
+    for (int i = 0; i < n; i++) {
+        int j = i;
+        if (i & 1 && arr[i] >= 0)
+            for (; j < n; j++) 
+                if (arr[j] < 0) break;
+            
+        else if (!(i & 1) && arr[i] < 0)
+            for (; j < n; j++) 
+                if (arr[j] >= 0) break;
+
+        if (j > i && j < n) {
+            int temp = arr[j];
+            while (j > i) arr[j--] = arr[j - 1];
+            arr[i] = temp;
+        }
+    }
+}
 -----------------------------------------------------------------------------
 21. find if there any subarray with sum equal to 0.
 
