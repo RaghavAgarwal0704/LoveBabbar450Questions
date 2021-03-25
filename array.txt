@@ -354,6 +354,25 @@ bool subArrayExists(int arr[], int n)
 ----------------------------------------------------------
 22. facorial of a large number.
 
+vector<int> factorial(int N){
+    vector<int>ans({1});
+    for(int i=2;i<=N;i++){
+        int carry=0;
+        for(int &j:ans){
+            long long int x=j*i + carry;
+            j=x%10;
+            carry=x/10;
+        }
+        string s=to_string(carry);
+        reverse(s.begin(),s.end());
+        for(char c:s) ans.push_back(c-'0');
+    }
+    reverse(ans.begin(),ans.end());
+    int i=0;
+    while(i<ans.size() && ans[i]==0) i++;
+    return vector<int>(ans.begin()+i,ans.end());
+}
+
 ----------------------------------------------------------
 23. Maximum product subarray.
 
