@@ -34,7 +34,19 @@ int countBitsFlip(int a, int b){
 5. Program to find whether a no is power of two
 
 ----------------------------------------------
-6. Find position of the only set bit
+6. Find position of the only set bit => time o(logn) space o(1)
+
+int findPosition(int n) {
+        // code here
+        int pos=-1,count=0,cnt=0;
+        while(n){
+            count++;
+            if(n&1==1){pos=count;cnt++;}
+            n=n>>1;
+        }
+        if(cnt==1)return pos;
+        return -1;
+    }
 
 ----------------------------------------------
 7. Copy set bits in a range
