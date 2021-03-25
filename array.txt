@@ -388,6 +388,14 @@ vector<int> factorial(int N){
 --------------------------------------------------------------------------------
 27. find if an array is subset of another array.
 
+string isSubset(int a1[], int a2[], int n, int m) {
+    unordered_map<int, int> mp;
+    for (int i = 0; i < n; i++) mp[a1[i]]++;
+    for (int i = 0; i < m; i++)
+        if (!mp[a2[i]]) return "No";
+    return "Yes";
+}
+
 -------------------------------------------------------------------------------
 28. find triplet that sum to a given value.
 
