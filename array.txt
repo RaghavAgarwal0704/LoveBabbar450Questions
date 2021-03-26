@@ -399,6 +399,23 @@ string isSubset(int a1[], int a2[], int n, int m) {
 -------------------------------------------------------------------------------
 28. find triplet that sum to a given value.
 
+O(N^2) time O(1) space : Using 2 pointers.
+bool find3Numbers(int A[], int n, int X)
+{
+    sort(A,A+n);
+    for(int i=0;i<n-2;i++){
+        int j=i+1;
+        int k=n-1;
+        int sum=X-A[i];
+        while(j<k){
+            if(A[j]+A[k]==sum) return true;
+            if(A[j]+A[k]<sum) j++;
+            else k--;
+            
+        }
+    }
+    return false;
+}
 --------------------------------------------------------------------------------
 29. trapping rain water problem.
 
