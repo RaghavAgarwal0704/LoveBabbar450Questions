@@ -130,7 +130,28 @@ bool shuffleCheck(String first, String second, String result) {
 
 -----------------------------------------------
 7. Count and Say problem
-
+string func(string s){
+        string ans="";
+        int count=1;
+        char ch=s[0];
+        for(int i=1;i<s.length();i++){
+            if(s[i]!=ch){
+                ans+=to_string(count)+ch;
+                count=1;
+                ch=s[i];
+            }
+            else count++;
+        }
+        return ans+to_string(count)+ch;
+    }
+    string countAndSay(int n) {
+        if(n==1)return "1";
+        string ans="1";
+        for(int i=2;i<=n;i++){
+            ans=func(ans);
+        }
+        return ans;
+    }
 
 -----------------------------------------------
 8. Write a program to find the longest Palindrome in a string.[ Longest palindromic Substring]
