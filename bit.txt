@@ -33,6 +33,16 @@ int countBitsFlip(int a, int b){
 ----------------------------------------------
 5. Program to find whether a no is power of two
 
+bool isPowerofTwo(long long n){
+    int count =0;
+    while(n){
+        if(n&1) count++;
+        if(count>1) return false;
+        n>>=1;
+    }
+    return count==1;
+}
+
 ----------------------------------------------
 6. Find position of the only set bit => time o(logn) space o(1)
 
