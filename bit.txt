@@ -12,6 +12,50 @@ int setBits(int n) {
 ----------------------------------------------
 2. Find the two non-repeating elements in an array of repeating elements
 
+(1) use two loops -- time o(n^2) space o(1)
+(2) use sorting time o(nlogn) space => depends which algo 
+(3) use map to store frequencies-- time o(n) space o(n)
+
+(4) using xor-- time o(n) space o(1)
+code: https://www.geeksforgeeks.org/find-two-non-repeating-elements-in-an-array-of-repeating-elements/
+first xor of all nos, now xor will have set bit that is present in either of the two non-repeating nos, get the pos of that set bit and divide the array into two sets 
+such that one no is in one set and other in the other set, finally xor of first set=first no, xor of second set=second no.
+
+void get2NonRepeatingNos(int arr[], int n,
+                                int *x, int *y)
+{
+    /* Will hold Xor of all elements */
+    int Xor = arr[0];
+   
+    /* Will have only single set bit of Xor */
+    int set_bit_no;
+    int i;
+    *x = 0;
+    *y = 0;
+     
+    /* Get the Xor of all elements */
+    for(i = 1; i < n; i++)
+    Xor ^= arr[i];
+     
+    /* Get the rightmost set bit in set_bit_no */--------> most imp => to get rightmost set bit in no n & 2s comp of n
+    set_bit_no = Xor & ~(Xor-1);
+     
+    /* Now divide elements in two sets by
+    comparing rightmost set bit of Xor with bit
+    at same position in each element. */
+    for(i = 0; i < n; i++)
+    { 
+         
+      /*Xor of first set */
+      if(arr[i] & set_bit_no)
+        *x = *x ^ arr[i];
+      /*Xor of second set*/
+      else
+      {
+        *y = *y ^ arr[i];
+      }
+    }
+}
 ----------------------------------------------
 3. Count number of bits to be flipped to convert A to B
 
