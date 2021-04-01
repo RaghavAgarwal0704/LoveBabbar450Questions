@@ -45,6 +45,18 @@
 ----------------------------------------------
 16. Longest Increasing Subsequence
 
+(1) Naīve approach : O(N^2) time and O(N) space
+int longestSubsequence(int n, int a[])
+{
+    vector<int>dp(n+1,1);
+    for(int i=1;i<n;i++){
+        int m=INT_MIN;
+        for(int j=0;j<i;j++) if(a[i]>a[j])m=max(m,dp[j]);
+        dp[i]=(m==INT_MIN)?1:m+1;
+    }
+    return *max_element(dp.begin(),dp.end());
+}
+
 ----------------------------------------------
 17. Space Optimized Solution of LCS
 
