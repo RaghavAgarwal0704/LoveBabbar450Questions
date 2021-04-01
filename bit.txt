@@ -33,6 +33,7 @@ int countBitsFlip(int a, int b){
 ----------------------------------------------
 5. Program to find whether a no is power of two
 
+(1) binary representation--only 1 set bit time o(logn) space o(1)
 bool isPowerofTwo(long long n){
     int count =0;
     while(n){
@@ -41,6 +42,14 @@ bool isPowerofTwo(long long n){
         n>>=1;
     }
     return count==1;
+}
+
+(2) no n, subract 1==n-1, now n&n-1 should be 0 --- time o(1) space o(1)
+
+bool isPowerOfTwo (int x)
+{
+    /* First x in the below expression is for the case when x is 0 */
+    return x && (!(x&(x-1)));
 }
 
 ----------------------------------------------
