@@ -57,6 +57,19 @@ int longestSubsequence(int n, int a[])
     return *max_element(dp.begin(),dp.end());
 }
 
+(2) Better method : O(N*logN) time and O(N) space
+int longestSubsequence(int n, int a[])
+{
+    
+    vector<int>ans({a[0]});
+    for(int i=1;i<n;i++){
+        int ind=lower_bound(ans.begin(),ans.end(),a[i])-ans.begin();   
+        if(ind==ans.size()) ans.push_back(a[i]);
+        else ans[ind]=a[i];
+    }
+    return ans.size();
+}
+
 ----------------------------------------------
 17. Space Optimized Solution of LCS
 
