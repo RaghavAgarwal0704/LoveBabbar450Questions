@@ -156,6 +156,43 @@ string func(string s){
 -----------------------------------------------
 8. Write a program to find the longest Palindrome in a string.[ Longest palindromic Substring]
 
+(1) naive-- time o(n^3) space o(1)
+
+int palin(string s){
+    int i=0,j=s.length()-1;
+    while(i<j){
+        if(s[i]==s[j]){i++;j--;}
+        else return 0;
+    }
+    return 1;
+}
+string check(string s){
+    int n=s.length();
+    int a=0,b=0;
+    for(int i=0;i<n-1;i++){
+        for(int j=i+1;j<n;j++){
+            if(palin(s.substr(i,j-i+1))){
+                if((b-a+1)<(j-i+1)){a=i;b=j;}
+            }
+        }
+    }
+    return s.substr(a,b-a+1);
+}
+int main() {
+	int t;
+	string s;
+	cin>>t;
+	while(t--){
+	    cin>>s;
+	    cout<<check(s)<<endl;
+	}
+	return 0;
+}
+
+
+(2) using DP time o(n^2) space o(n^2)
+
+
 -----------------------------------------------
 9. Find Longest Recurring Subsequence in String
 
