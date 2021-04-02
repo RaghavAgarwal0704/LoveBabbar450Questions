@@ -19,6 +19,19 @@ int knapSack(int W, int wt[], int val[], int n) {
     return util(W, wt, val, n);
 }
 
+(2) Iterative method : O(n*W) space, O(n*W) time
+int knapSack(int W, int wt[], int val[], int n) {
+    vector<vector<int>> dp(W + 1, vector<int>(n + 1, 0));
+    for (int i = 1; i <= W; i++)
+        for (int j = 1; j <= n; j++) {
+            if (i >= wt[j - 1])
+                dp[i][j] = max(val[j - 1] + dp[i - wt[j - 1]][j - 1], dp[i][j - 1]);
+            else
+                dp[i][j] = dp[i][j - 1];
+        }
+    return dp[W][n];
+}
+
 ----------------------------------------------
 3. Binomial CoefficientProblem
 
