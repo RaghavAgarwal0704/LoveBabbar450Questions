@@ -3,6 +3,22 @@
 ----------------------------------------------
 2. Knapsack Problem
 
+(1) Recursive method with memoization : O(n*W) space, O(n*W) time
+vector<vector<int>> dp;
+int util(int W, int wt[], int val[], int n) {
+    if (n <= 0 || W <= 0) return 0;
+    if (dp[W][n] != -1) return dp[W][n];
+    if (wt[n - 1] <= W)
+        dp[W][n] = max(val[n - 1] + util(W - wt[n - 1], wt, val, n - 1), util(W, wt, val, n - 1));
+    else
+        dp[W][n] = util(W, wt, val, n - 1);
+    return dp[W][n];
+}
+int knapSack(int W, int wt[], int val[], int n) {
+    dp = vector<vector<int>>(W + 1, vector<int>(n + 1, -1));
+    return util(W, wt, val, n);
+}
+
 ----------------------------------------------
 3. Binomial CoefficientProblem
 
