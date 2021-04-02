@@ -25,6 +25,28 @@ int maxMeetings(int start[], int end[], int n) {
 -----------------------------------------------------
 4. Water Connection Problem
 
+vector<vector<int>> solve(int n, int p, vector<int> a, vector<int> b, vector<int> d) {
+    vector<vector<int>> ans;
+    vector<int> temp(20, 0);
+    for (int i : a) temp[i]++;
+    for (int i : b) temp[i]++;
+    unordered_map<int, pair<int, int>> m;
+    for (int i = 0; i < p; i++) m[a[i]] = {b[i], d[i]};
+    for (int i = 1; i <= 20; i++) {
+        if (temp[i] == 1 && m.find(i) != m.end()) {
+            int x = i;
+            int dia = INT_MAX;
+            while (m.find(x) != m.end()) {
+                dia = min(dia, m[x].second);
+                x = m[x].first;
+                m[i] = {x, dia};
+            }
+            ans.push_back({i, m[i].first, m[i].second});
+        }
+    }
+    return ans;
+}
+
 -----------------------------------------------------
 5. Fractional Knapsack Problem
 O(N*logN) time, O(1) space : Greedy on value per unit weight.
