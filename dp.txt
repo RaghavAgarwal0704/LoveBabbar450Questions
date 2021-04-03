@@ -2,8 +2,15 @@
 
 ----------------------------------------------
 2. Knapsack Problem
+(1) Naīve Recursive method : 
+int knapSack(int W, int wt[], int val[], int n) {
+    if (n <= 0 || W <= 0) return 0;
+    if (wt[n - 1] <= W)
+        return max(val[n - 1] + util(W - wt[n - 1], wt, val, n - 1), util(W, wt, val, n - 1));
+    return util(W, wt, val, n - 1);
+}
 
-(1) Recursive method with memoization : O(n*W) space, O(n*W) time
+(2) Recursive method with memoization : O(n*W) space, O(n*W) time
 vector<vector<int>> dp;
 int util(int W, int wt[], int val[], int n) {
     if (n <= 0 || W <= 0) return 0;
@@ -19,7 +26,7 @@ int knapSack(int W, int wt[], int val[], int n) {
     return util(W, wt, val, n);
 }
 
-(2) Iterative method : O(n*W) space, O(n*W) time
+(3) Iterative method : O(n*W) space, O(n*W) time
 int knapSack(int W, int wt[], int val[], int n) {
     vector<vector<int>> dp(W + 1, vector<int>(n + 1, 0));
     for (int i = 1; i <= W; i++)
