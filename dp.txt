@@ -32,6 +32,22 @@ long long int count(int S[], int m, int n) {
     return util(S, m, n);
 }
 
+(3) Iterative(top-down) : O(m*n) space, O(n*m) time;
+vector<vector<long long>> dp;
+long long int count(int S[], int m, int n) {
+    vector<vector<long long>> dp(n + 1, vector<long long>(m + 1, 0));
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            dp[i][j] = dp[i][j - 1];
+            if (S[j - 1] == i)
+                dp[i][j] = dp[i][j - 1] + 1LL;
+            else if (S[j - 1] < i)
+                dp[i][j] = dp[i - S[j - 1]][j] + dp[i][j - 1];
+        }
+    }
+    return dp[n][m];
+}
+
 ----------------------------------------------
 2. Knapsack Problem
 (1) Naīve Recursive method : 
