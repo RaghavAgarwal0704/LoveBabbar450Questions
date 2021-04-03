@@ -16,6 +16,22 @@ int equalPartition(int N, int arr[])
     return util(N,arr,sum/2);
 }
 
+(2) Recursive with memoization : O(m*n) space, O(n*m) time;
+long long int util(int S[], int m, int n) {
+    if (n == 0 || m == 0) return 0;
+    if (dp[n][m] != -1) return dp[n][m];
+    if (S[m - 1] <= n) {
+        if (S[m - 1] == n) dp[n][m] = util(S, m - 1, n) + 1LL;
+        else dp[n][m] = util(S, m, n - S[m - 1]) + util(S, m - 1, n);
+    } else
+        dp[n][m] = util(S, m - 1, n);
+    return dp[n][m];
+}
+long long int count(int S[], int m, int n) {
+    dp = vector<vector<long long>>(n + 1, vector<long long>(m + 1, -1));
+    return util(S, m, n);
+}
+
 ----------------------------------------------
 2. Knapsack Problem
 (1) Naīve Recursive method : 
