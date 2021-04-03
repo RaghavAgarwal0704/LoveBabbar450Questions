@@ -114,6 +114,26 @@ int equalPartition(int N, int arr[])
     return util(N,arr,sum/2);
 }
 
+(2) Recursive method with memoization : O(N*sum/2) space, O(N*sum/2) time
+vector<vector<int>> dp;
+int util(int N, int arr[], int sum) {
+    if (N == 0) return sum == 0;
+    if (N == 0 && sum != 0) return 0;
+    if (dp[sum][N] != -1) return dp[sum][N];
+    if (arr[N - 1] <= sum) {
+        dp[sum][N] = util(N - 1, arr, sum - arr[N - 1]) || util(N - 1, arr, sum);
+    } else
+        dp[sum][N] = util(N - 1, arr, sum);
+    return dp[sum][N];
+}
+int equalPartition(int N, int arr[]) {
+    int sum = 0;
+    for (int i = 0; i < N; i++) sum += arr[i];
+    if (sum & 1 || N <= 1) return 0;
+    dp = vector<vector<int>>(sum / 2 + 1, vector<int>(N + 1, -1));
+    return util(N, arr, sum / 2);
+}
+
 ----------------------------------------------
 9. Friends Pairing Problem
 
