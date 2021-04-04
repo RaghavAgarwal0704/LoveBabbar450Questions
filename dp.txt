@@ -215,6 +215,25 @@ int maximizeTheCuts(int n, int x, int y, int z) {
     if (z <= n) ans = max(ans, maximizeTheCuts(n - z, x, y, z));
     return ans + 1;
 }
+
+(2) Recursive with memoization : O(N) time, O(N) space
+vector<int> dp;
+int util(int n, int x, int y, int z) {
+    if (n == 0) return 0;
+    int ans = -1;
+    if (dp[n] != -1) return dp[n];
+    if (x <= n) ans = max(ans, util(n - x, x, y, z));
+    if (y <= n) ans = max(ans, util(n - y, x, y, z));
+    if (z <= n) ans = max(ans, util(n - z, x, y, z));
+    dp[n] = ans == -1 ? INT_MIN : ans + 1;
+    return dp[n];
+}
+int maximizeTheCuts(int n, int x, int y, int z) {
+    dp = vector<int>(n, -1);
+    int ans = util(n, x, y, z);
+    return ans < 0 ? 0 : ans;
+}
+
 ----------------------------------------------
 14. Longest Common Subsequence
 
