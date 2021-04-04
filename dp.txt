@@ -165,6 +165,24 @@ int maxGold(int n, int m, vector<vector<int>> M) {
     return M[n - 1][m - 1] + max(maxGold(n, m - 1, M), max(maxGold(n - 1, m - 1, M), maxGold(n + 1, m - 1, M)));
 }
 
+(2) Recursive with memoization : O(m*n) space, O(n*m) time;
+vector<vector<int>> dp;
+int util(int n, int m, vector<vector<int>> M) {
+    if (n > M.size() || m > M[0].size()) return 0;
+    if (m == 0 || n == 0) return 0;
+    if (dp[n][m] != -1) return dp[n][m];
+    dp[n][m] = M[n - 1][m - 1] + max(util(n, m + 1, M), max(util(n - 1, m + 1, M), util(n + 1, m + 1, M)));
+    return dp[n][m];
+}
+int maxGold(int n, int m, vector<vector<int>> M) {
+    dp = vector<vector<int>>(n + 1, vector<int>(m + 1, -1));
+    int ans = INT_MIN;
+    for (int i = 1; i <= n; i++) {
+        ans = max(ans, util(i, 1, M));
+    }
+    return ans;
+}
+
 ----------------------------------------------
 11. Assembly Line SchedulingProblem
 
