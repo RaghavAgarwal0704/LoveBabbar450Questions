@@ -158,6 +158,13 @@ int equalPartition(int N, int arr[]) {
 ----------------------------------------------
 10. Gold Mine Problem
 
+(1) Naīve Recursive :
+int maxGold(int n, int m, vector<vector<int>> M) {
+    if (n > M.size()) return 0;
+    if (m == 0 || n == 0) return 0;
+    return M[n - 1][m - 1] + max(maxGold(n, m - 1, M), max(maxGold(n - 1, m - 1, M), maxGold(n + 1, m - 1, M)));
+}
+
 ----------------------------------------------
 11. Assembly Line SchedulingProblem
 
