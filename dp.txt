@@ -206,6 +206,15 @@ int maxGold(int n, int m, vector<vector<int>> M) {
 ----------------------------------------------
 13. Maximize The Cut Segments
 
+(1) Naīve Recursive :
+int maximizeTheCuts(int n, int x, int y, int z) {
+    if (n == 0) return 0;
+    int ans = -1;
+    if (x <= n) ans = max(ans, maximizeTheCuts(n - x, x, y, z));
+    if (y <= n) ans = max(ans, maximizeTheCuts(n - y, x, y, z));
+    if (z <= n) ans = max(ans, maximizeTheCuts(n - z, x, y, z));
+    return ans + 1;
+}
 ----------------------------------------------
 14. Longest Common Subsequence
 
