@@ -234,6 +234,21 @@ int maximizeTheCuts(int n, int x, int y, int z) {
     return ans < 0 ? 0 : ans;
 }
 
+(3) Iterative : 
+int maximizeTheCuts(int n, int x, int y, int z) {
+    dp = vector<int>(n + 1, -1);
+    dp[0] = 0;
+
+    for (int i = 1; i <= n; i++) {
+        dp[i] = -1;
+        if (x <= i) dp[i] = max(dp[i], dp[i - x]);
+        if (y <= i) dp[i] = max(dp[i], dp[i - y]);
+        if (z <= i) dp[i] = max(dp[i], dp[i - z]);
+        if (dp[i] != -1) dp[i]++;
+    }
+    return dp[n] == -1 ? 0 : dp[n];
+}
+
 ----------------------------------------------
 14. Longest Common Subsequence
 
