@@ -319,7 +319,7 @@ int longestSubsequence(int n, int a[])
 ----------------------------------------------
 18. LCS (Longest Common Subsequence) of three strings
 
-(1) Recursive with memoization :
+(1) Recursive with memoization : O(n1*n2*n3) space,O(n1*n2*n3) time
 vector<vector<vector<int>>> dp;
 int util(string s1, string s2, string s3, int x, int y, int z) {
     if (x > s1.length() || y > s2.length() || z > s3.length()) return 0;
@@ -333,6 +333,28 @@ int util(string s1, string s2, string s3, int x, int y, int z) {
 int LCSof3(string s1, string s2, string s3, int x, int y, int z) {
     dp = vector<vector<vector<int>>>(x + 1, vector<vector<int>>(y + 1, vector<int>(z + 1, -1)));
     return util(s1, s2, s3, 1, 1, 1);
+}
+
+(2) Iterative : O(n1*n2*n3) space,O(n1*n2*n3) time
+int LCSof3(string s1, string s2, string s3, int x, int y, int z) {
+    vector<vector<vector<int>>> dp(x + 1, vector<vector<int>>(y + 1, vector<int>(z + 1, -1)));
+    for (int i = 0; i <= x; i++)
+        for (int j = 0; j <= y; j++)
+            for (int k = 0; k <= z; k++)
+                if (i == 0 || j == 0 || k == 0) dp[i][j][k] = 0;
+
+    for (int i = 1; i <= x; i++)
+        for (int j = 1; j <= y; j++)
+            for (int k = 1; k <= z; k++) {
+                if (s1[i - 1] == s2[j - 1] && s1[i - 1] == s3[k - 1])
+                    dp[i][j][k] = 1 + dp[i - 1][j - 1][k - 1];
+                else {
+                    dp[i][j][k] = max(dp[i][j][k], dp[i][j][k - 1]);
+                    dp[i][j][k] = max(dp[i][j][k], dp[i][j - 1][k]);
+                    dp[i][j][k] = max(dp[i][j][k], dp[i - 1][j][k]);
+                }
+            }
+    return dp[x][y][z] == -1 ? 0 : dp[x][y][z];
 }
 
 ----------------------------------------------
