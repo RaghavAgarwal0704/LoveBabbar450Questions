@@ -319,6 +319,22 @@ int longestSubsequence(int n, int a[])
 ----------------------------------------------
 18. LCS (Longest Common Subsequence) of three strings
 
+(1) Recursive with memoization :
+vector<vector<vector<int>>> dp;
+int util(string s1, string s2, string s3, int x, int y, int z) {
+    if (x > s1.length() || y > s2.length() || z > s3.length()) return 0;
+    if (dp[x][y][z] != -1) return dp[x][y][z];
+    if (s1[x - 1] == s2[y - 1] && s2[y - 1] == s3[z - 1])
+        dp[x][y][z] = 1 + util(s1, s2, s3, x + 1, y + 1, z + 1);
+    else
+        dp[x][y][z] = max(util(s1, s2, s3, x, y, z + 1), max(util(s1, s2, s3, x, y + 1, z), util(s1, s2, s3, x + 1, y, z)));
+    return dp[x][y][z];
+}
+int LCSof3(string s1, string s2, string s3, int x, int y, int z) {
+    dp = vector<vector<vector<int>>>(x + 1, vector<vector<int>>(y + 1, vector<int>(z + 1, -1)));
+    return util(s1, s2, s3, 1, 1, 1);
+}
+
 ----------------------------------------------
 19. Maximum Sum Increasing Subsequence
 
