@@ -95,6 +95,27 @@ int knapSack(int W, int wt[], int val[], int n) {
 ----------------------------------------------
 7. Edit Distance
 
+(1) Recursive with memoization : 
+vector<vector<int>> dp;
+int util(string s, string t, int x, int y) {
+    if (x == 0 && y == 0) return 0;
+    if (x == 0) return y;
+    if (y == 0) return x;
+    if (dp[x][y] != -1) return dp[x][y];
+    if (s[x - 1] == t[y - 1])
+        dp[x][y] = util(s, t, x - 1, y - 1);
+    else
+        dp[x][y] = 1 + min(util(s, t, x, y - 1), min(util(s, t, x - 1, y), util(s, t, x - 1, y - 1)));
+    return dp[x][y];
+}
+int editDistance(string s, string t) {
+    // Code here
+    int x = s.length();
+    int y = t.length();
+    dp = vector<vector<int>>(x + 1, vector<int>(y + 1, -1));
+    return util(s, t, x, y);
+}
+
 ----------------------------------------------
 8. Subset Sum Problem
 
