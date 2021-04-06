@@ -414,6 +414,24 @@ int LCSof3(string s1, string s2, string s3, int x, int y, int z) {
 ----------------------------------------------
 24. Maximum Length Chain of Pairs
 
+int maxChainLen(struct val p[], int n) {
+    sort(p, p + n, [](struct val &a, struct val &b) {
+        return a.second < b.second;
+    });
+    vector<int> dp(n + 1, 1);
+    dp[0] = 0;
+    int pre = INT_MIN;
+    int ans = INT_MIN;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j < i; j++)
+            if (p[i - 1].first > p[j - 1].second)
+                dp[i] = max(dp[i], dp[j] + 1);
+        ;
+        ans = max(ans, dp[i]);
+    }
+    return ans;
+}
+
 ----------------------------------------------
 25. Maximum size square sub-matrix with all 1s
 
