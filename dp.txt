@@ -482,6 +482,17 @@ int longestCommonSubstr(string s1, string s2, int x, int y) {
 ----------------------------------------------
 37. Unbounded Knapsack (Repetition of items allowed)
 
+int knapSack(int n, int W, int val[], int wt[]) {
+    // code here
+    vector<int> dp(W + 1, 0);
+    for (int i = 0; i < n; i++)
+        for (int j = 1; j <= W; j++)
+            if (wt[i] <= j)
+                dp[j] = max(val[i] + dp[j - wt[i]], dp[j]);
+
+    return dp[W];
+}
+
 ----------------------------------------------
 38. Word Break Problem
 
