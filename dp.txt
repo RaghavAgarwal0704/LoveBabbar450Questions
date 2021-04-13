@@ -468,7 +468,23 @@ int longestCommonSubstr(string s1, string s2, int x, int y) {
 }
 
 ----------------------------------------------
-33. Count number of ways to reacha given score in a game
+33. Count number of ways to reach a given score in a game
+
+(1) Naīve Recursive method : 
+long long int util( int S[], int m,long long int n ){
+    if(n==0 || m==0) return 0;
+    if(S[m-1]<=n) {
+        if(S[m-1]==n) return util(S,m-1,n)+1LL;
+        return util(S,m,n-S[m-1])+util(S,m-1,n);
+    }
+    return util(S,m-1,n);
+}
+
+long long int count(long long int n)
+{
+    int S[]={3,5,10};
+    return util(S,3,n);
+}
 
 ----------------------------------------------
 34. Count Balanced Binary Trees of Height h
