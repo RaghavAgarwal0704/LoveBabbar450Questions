@@ -504,7 +504,7 @@ long long int count(long long int n) {
     return util(S, 3, n);
 }
 
-(3) Iterative(top-down) : O(m*n) space, O(n*m) time;
+(3) Iterative(top-down) : O(n) space, O(n) time;
 long long int count(long long int n) {
     vector<vector<long long>> dp(n + 1, vector<long long>(4, 0));
     int S[]={3,5,10};
