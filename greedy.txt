@@ -133,6 +133,26 @@ vector<int> candyStore(int candies[], int N, int k)
 -----------------------------------------------------
 16. Maximize array sum after K negations
 
+long long int maximizeSum(long long int a[], int n, int k)
+{
+    sort(a,a+n);
+    long long int ans=accumulate(a,a+n,0LL);
+    long long int mi=INT_MAX;
+    int i=0;
+    while(k--){
+        if(a[i]<0) {
+            mi=min(mi,a[i]*-1);
+            ans-=2*a[i++];
+        }
+        else {
+            mi=min(a[i],mi);
+            ans-=2*mi;
+            mi*=-1;
+        }
+    }
+    return ans;
+}
+
 -----------------------------------------------------
 17. Maximize the sum of arr[i]*i
 
