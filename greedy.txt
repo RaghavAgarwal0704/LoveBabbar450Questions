@@ -98,6 +98,23 @@ int findPlatform(int arr[], int dep[], int n) {
 -----------------------------------------------------
 10. Find the minimum and maximum amount to buy all N candies
 
+vector<int> candyStore(int candies[], int N, int k)
+{
+    sort(candies,candies+N);
+    int min=0,max=0;
+    int n=N-1,i=0;
+    while(i<=n){
+        min+=candies[i++];
+        n-=k;
+    }
+    i=N-1,n=0;
+    while(i>=n){
+        max+=candies[i--];
+        n+=k;
+    }
+    return vector<int>({min,max});
+}
+
 -----------------------------------------------------
 11. Minimize Cash Flow among a given set of friends who have borrowed money from each other
 
