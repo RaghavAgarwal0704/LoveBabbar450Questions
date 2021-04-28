@@ -337,12 +337,55 @@ vector<int> nextGreaterElement(vector<int> arr, int n) {
 
 -------------------------------------------------------------
 11. Arithmetic Expression evaluation
-
+doneee
 -------------------------------------------------------------
-12. Evaluation of Postfix expression
+12. Evaluation of Postfix expression (top-1 with top,  while for prefix top with top-1)
 
+int evaluatePostfix(string s)
+    {
+        // Your code here
+        stack<int>st;
+        for(int i=0;i<s.length();i++){
+            if(s[i]>47&&s[i]<58)st.push(s[i]-'0');
+            else{
+                int a=st.top();st.pop();
+                int b=st.top();st.pop();
+                switch(s[i]){
+                    case '+':st.push(b+a);break;
+                    case '-':st.push(b-a);break;
+                    case '*':st.push(b*a);break;
+                    case '/':st.push(b/a);break;
+                }
+            }
+        }
+        return st.top();
+    }
 -------------------------------------------------------------
 13. Implement a method to insert an element at its bottom without using any other data structure.
+
+===> using recursion
+
+void insert_at_bottom(char x){
+
+    if(st.Empty())
+        st.push(x);
+
+    else{
+        /* All items are held in Function Call Stack until we
+           reach end of the stack. When the stack becomes
+           empty, the st.size() becomes 0, the
+           above if part is executed and the item is inserted
+           at the bottom */
+
+        char a = st.top();
+        st.pop();
+        insert_at_bottom(x);
+
+        //push all the items held in Function Call Stack
+        //once the item is inserted at the bottom
+        st.push(a);
+    }
+}
 
 -------------------------------------------------------------
 14. Reverse a stack using recursion
