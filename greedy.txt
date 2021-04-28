@@ -171,6 +171,26 @@ long long int maximizeSum(long long int a[], int n, int k)
 -----------------------------------------------------
 22. Program for Least Recently Used (LRU) Page Replacement algorithm
 
+int pageFaults(int N, int C, int pages[]) {
+    unordered_map<int, list<int>::iterator> m;
+    list<int> mem;
+    int ans = 0;
+    for (int i = 0; i < N; i++) {
+        if (m.find(pages[i]) != m.end())
+            mem.erase(m[pages[i]]);
+        else if (C)
+            ans++, C--;
+        else {
+            m.erase(mem.front());
+            mem.pop_front();
+            ans++;
+        }
+        mem.push_back(pages[i]);
+        m[pages[i]] = --mem.end();
+    }
+    return ans;
+}
+
 -----------------------------------------------------
 23. Smallest subset with sum greater than all other elements
 
