@@ -1,7 +1,24 @@
 1. Spiral traversal on a Matrix
 
 ------------------------------------
-2. Search an element in a matriix
+2. Search an element in a matrix
+
+method 1: o(mn)
+
+method 2: o(log(mn))==o(log m + log n)
+bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int m=matrix.size();
+        int n=matrix[0].size();
+        int b=0,e=m*n-1,mid,ele;
+        while(b<=e){
+            mid=b+(e-b)/2;
+            ele=matrix[mid/n][mid%n];
+            if(ele==target)return true;
+            else if(ele<target)b=mid+1;
+            else e=mid-1;
+        }
+        return false;
+    }
 
 ------------------------------------
 3. Find median in a row wise sorted matrix
