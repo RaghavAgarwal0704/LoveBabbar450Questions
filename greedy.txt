@@ -211,6 +211,15 @@ int pageFaults(int N, int C, int pages[]) {
 -----------------------------------------------------
 24. Chocolate Distribution Problem
 
+long long findMinDiff(vector<long long> a, long long n, long long m){
+    sort(a.begin(),a.end());
+    long long ans=LONG_LONG_MAX;
+    for(int i=m-1;i<n;i++){
+        ans=min(ans,a[i]-a[i-m+1]);
+    }
+    return ans;
+}
+
 -----------------------------------------------------
 25. DEFKIN -Defense of a Kingdom
 
