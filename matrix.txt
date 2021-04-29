@@ -23,12 +23,58 @@ bool searchMatrix(vector<vector<int>>& matrix, int target) {
 ------------------------------------
 3. Find median in a row wise sorted matrix
 
+method 1: convert 2d matrix to 1d arrray then sort then find middle element => time = o(r*c*log(r*c)) space = o(r*c)
+  
+method 2: 
 ------------------------------------
 4. Find row with maximum no. of 1's
 
+method 1 : o(mn)
+int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
+	    // code here
+	    int vec[n];
+	    for(int i=0;i<n;i++)vec[i]=-1;
+	    for(int i=0;i<n;i++){
+	        for(int j=0;j<m;j++){
+	            if(arr[i][j]==1){vec[i]=j;break;}
+	        }
+	    }
+	    int max=INT_MIN,pos=-1;
+	    for(int i=0;i<n;i++){
+	        if(((m-vec[i])>max)&&vec[i]!=-1){max=m-vec[i];pos=i;}
+	    }
+	    return pos;
+	}
+        
+method 2: for every row find pos of 1st 1 using binary search so =>o(mlogn)
+
+method 3: o(m+n)
+int rowWithMax1s(bool mat[R][C])
+{
+    // Initialize first row as row with max 1s
+    int max_row_index = 0;
+ 
+    // The function first() returns index of first 1 in row 0.
+    // Use this index to initialize the index of leftmost 1 seen so far
+    int j = first(mat[0], 0, C-1);
+    if (j == -1) // if 1 is not present in first row
+      j = C - 1;
+ 
+    for (int i = 1; i < R; i++)
+    {
+        // Move left until a 0 is found
+        while (j >= 0 && mat[i][j] == 1)
+        {
+           j = j-1;  // Update the index of leftmost 1 seen so far
+           max_row_index = i;  // Update max_row_index
+        }
+    }
+    return max_row_index;
+}
+
 ------------------------------------
 5. Print elements in sorted order using row-column wise sorted matrix
-
+2d=>1d then sort then 1d=>2d
 ------------------------------------
 6. Maximum size rectangle
 
