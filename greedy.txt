@@ -272,6 +272,18 @@ long long minCost(long long arr[], long long n) {
 -----------------------------------------------------
 33. Find smallest number with given number of digits and sum of digits
 
+string smallestNumber(int S, int D){
+    string ans="";
+    while(D--){
+        if(S>9) S-=9,ans="9"+ans;
+        else {
+            if(D) ans=(char)(S-1 +'0')+ans,S=1;
+            else ans=(char)(S +'0')+ans,S=0;
+        }
+    }
+    return (S!=0) ?"-1":ans;
+}
+
 -----------------------------------------------------
 34. Rearrange characters in a string such that no two adjacent are same
 
