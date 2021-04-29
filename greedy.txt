@@ -162,6 +162,20 @@ long long int maximizeSum(long long int a[], int n, int k)
 -----------------------------------------------------
 19. Maximize sum of consecutive differences in a circular array
 
+long long int maxSum(int arr[], int n)
+{
+    long long int ans=0;
+    sort(arr,arr+n);
+    int k=ceil(n/2);
+    int t=0;
+    for(int i=0;i<k;i++){
+        ans+=abs(arr[n-1-t]-arr[i]);
+        ans+=abs(arr[n-1-t]-arr[(i+1)%k]);
+        t++;
+    }
+    return ans;
+}
+
 -----------------------------------------------------
 20. Minimum sum of absolute difference of pairs of two arrays
 
