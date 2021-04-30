@@ -267,6 +267,35 @@ int equalPartition(int N, int arr[]) {
 ----------------------------------------------
 9. Friends Pairing Problem
 
+1) O(N) space O(N) time
+int countFriendsPairings(int n) 
+{ 
+    int mod=1e9+7;
+    vector<int>dp(n+1,-1);
+    dp[0]=0;
+    dp[1]=1;
+    dp[2]=2;
+    for(int i=3;i<=n;i++)
+        dp[i]=(dp[i-1]+((long long int)(i-1)*dp[i-2])%mod)%mod;
+    return dp[n];
+    
+}
+2) O(1) space O(N) time
+int countFriendsPairings(int n) 
+{ 
+    int mod=1e9+7;
+    if(n==0) return 0;
+    int a=1,b=2;
+    if(n==1) return a;
+    if(n==2) return b;
+    for(int i=3;i<=n;i++){
+        int temp=b;
+        b=(b+((long long int)(i-1)*a)%mod)%mod;
+        a=temp;
+    }
+    return b;
+}
+
 ----------------------------------------------
 10. Gold Mine Problem
 
