@@ -1,4 +1,6 @@
-1. Activity Selection Problem
+1. Activity Selection Problem--- sort activities based on finish time, then include those meetings whose start time is after the finish time of previously selected meeting
+ 
+here sorting using lambda of sort-----can also do pairsort algorithm
 
 int maxMeetings(int start[], int end[], int n) {
     vector<pair<int, int>> v;
@@ -6,15 +8,33 @@ int maxMeetings(int start[], int end[], int n) {
     sort(v.begin(), v.end(), [](const pair<int, int>& a, const pair<int, int>& b) {
         return a.second < b.second;
     });
-    int prev = 0;
-    int ans = 0;
-    for (int i = 0; i < n; i++)
-        if (v[i].first > prev) {
-            ans++;
-            prev = v[i].second;
+    
+    int count = 1;//since first meeting is always included
+    int j=0;//stores the previously included meeting
+    for (int i = 1; i < n; i++)
+        if (v[i].first > v[j].second) {
+            count++;
+            j=i;
         }
-    return ans;
+    return count;
 }
+
+
+pairsort algorithm://sorting done based on the first element
+
+void pairsort(int start[],int end[],int n){
+        pair<int,int>p[n];
+        for(int i=0;i<n;i++){
+            p[i].first=end[i];
+            p[i].second=start[i];
+        }
+        sort(p,p+n);
+        for(int i=0;i<n;i++){
+            start[i]=p[i].second;
+            end[i]=p[i].first;
+        }
+}
+       
 
 -----------------------------------------------------
 2. Job SequencingProblem
