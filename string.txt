@@ -129,7 +129,8 @@ bool shuffleCheck(String first, String second, String result) {
   }
 
 -----------------------------------------------
-7. Count and Say problem
+7. Count and Say problem ===> o(2^n) , o(2^n)
+
 string func(string s){
         string ans="";
         int count=1;
