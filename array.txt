@@ -214,7 +214,23 @@ int maxSubarraySum(int arr[], int n) {
 }
 
 ---------------------------------------------------
-14. Merge intervals
+14. Merge intervals ==> o(nlogn) sort by start time and merge if start time of i+1 < finish time of i
+
+
+vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>>vec;
+        sort(intervals.begin(),intervals.end(),[](const vector<int>&a,const vector<int>&b){
+           return a[0]<b[0];
+        });
+        for(auto a:intervals){
+            if(vec.empty()||vec.back()[1]<a[0])vec.push_back(a);
+            else {vec.back()[1]=max(a[1],vec.back()[1]);}
+            
+        }
+        return vec;
+}
+
+            ---------------OR---------------
 
 vector<vector<int>> merge(vector<vector<int>>& intervals) {
     sort(intervals.begin(), intervals.end(), [](const vector<int>& a, const vector<int>& b) {
@@ -241,6 +257,9 @@ vector<vector<int>> merge(vector<vector<int>>& intervals) {
 --------------------------------------------------
 17. Best time to buy and sell stock.
 
+naive : o(n^2)
+
+efficient: o(n) 
 int maxProfit(vector<int>& prices) {
     int ans=0;
     int minPrice=INT_MAX;
@@ -253,7 +272,38 @@ int maxProfit(vector<int>& prices) {
 
 --------------------------------------------------
 18. Find all pair of integers in array whose sum equal to given number.
+naive : o(n^2) , o(1)
+eggicient : o(n) , o(n)
 
+int getPairsCount(int arr[], int n, int sum)
+{
+    unordered_map<int, int> m;
+ 
+    // Store counts of all elements in map m
+    for (int i = 0; i < n; i++)
+        m[arr[i]]++;
+ 
+    int twice_count = 0;
+ 
+    // iterate through each element and increment the
+    // count (Notice that every pair is counted twice)
+    for (int i = 0; i < n; i++) {
+        twice_count += m[sum - arr[i]];
+ 
+        // if (arr[i], arr[i]) pair satisfies the condition,
+        // then we need to ensure that the count is
+        // decreased by one such that the (arr[i], arr[i])
+        // pair is not considered
+        if (sum - arr[i] == arr[i])
+            twice_count--;
+    }
+ 
+    // return the half of twice_count
+    return twice_count / 2;
+}
+ 
+   -------------OR--------------------
+ 
 int getPairsCount(int arr[], int n, int k) {
     // code here
     unordered_map<int,int>m;
