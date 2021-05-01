@@ -572,6 +572,21 @@ int maxSubstring(string S)
 ----------------------------------------------
 29. Minimum number of jumps to reach end
 
+int minJumps(int nums[], int n){
+    if(n<=1) return 0;
+    int i=0,j=0;
+    for(int k=0;k<n;k++){
+        int far=0;
+        for(int w=i;w<=j;w++){
+            if(w+nums[w]>=n-1) return k+1;
+            far=max(far,nums[w]+w);
+        }
+        i=j+1;
+        j=far;
+    }
+    return -1;      
+}
+
 ----------------------------------------------
 30. Minimum cost to fill given weight in a bag
 
