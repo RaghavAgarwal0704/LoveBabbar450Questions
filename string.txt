@@ -227,7 +227,23 @@ void printSubsequence(string input, string output)
 11. Print all the permutations of the given string
 
 -----------------------------------------------
-12. Split the Binary string into two substring with equal 0’s and 1’s
+12. Split the Binary string into two substring with equal 0’s and 1’s.
+
+
+int main() {
+	string str,st="";
+	cin>>str;
+	int count0=0,count1=0,count=0;
+	for(int i=0;i<str.length();i++){
+	    if(str[i]=='0')count0++;
+	    else count1++;
+	    if(count1==count0){count++;count0=0;count1=0;st="";}
+	    else st+=str[i];
+	}
+	if(st!="")cout<<-1;
+	else cout<<count;
+	return 0;
+}
 
 -----------------------------------------------
 13. Word Wrap Problem [VERY IMP].
