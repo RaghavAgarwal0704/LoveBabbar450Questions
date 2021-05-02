@@ -198,7 +198,30 @@ int main() {
 9. Find Longest Recurring Subsequence in String
 
 -----------------------------------------------
-10. Print all Subsequences of a string.
+10. Print all Subsequences of a string ==> time=o(2^n) space=o(1) if only print else o(2^n)
+
+--no of subsequences= 2^n (including the empty string)
+--if want the ans in sorted order then save in a set then sort.
+
+void printSubsequence(string input, string output)
+{
+    // Base Case
+    // if the input is empty print the output string
+    if (input.empty()) {
+        cout << output << endl;
+        return;
+    }
+ 
+    // output is passed with including
+    // the Ist characther of
+    // Input string
+    printSubsequence(input.substr(1), output + input[0]);
+ 
+    // output is passed without
+    // including the Ist character
+    // of Input string
+    printSubsequence(input.substr(1), output);
+}
 
 -----------------------------------------------
 11. Print all the permutations of the given string
