@@ -35,6 +35,28 @@ void dfs(int s, vector<int> g[], bool vis[]) {
 ----------------------------------------------------------
 4. Detect Cycle in Directed Graph using BFS/DFS Algo 
 
+1) Using DFS
+bool util(int v, vector<int> adj[], vector<bool> visited, vector<bool> done) {
+    visited[v] = true;
+    done[v] = true;
+
+    for (int i : adj[v]) {
+        if (!visited[i] && util(i, adj, visited, done)) {
+            return true;
+        } else if (done[i])
+            return true;
+    }
+    done[v] = false;
+    return false;
+}
+bool isCyclic(int V, vector<int> adj[]) {
+    vector<bool> visited(V, false);
+    vector<bool> done(V, false);
+    for (int i = 0; i < V; i++)
+        if (util(i, adj, visited, done)) return true;
+    return false;
+}
+
 ----------------------------------------------------------
 5. Detect Cycle in UnDirected Graph using BFS/DFS Algo 
 
