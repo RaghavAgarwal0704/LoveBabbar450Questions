@@ -114,6 +114,28 @@ vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int ne
 ----------------------------------------------------------
 10. Making wired Connections
 
+void dfs(unordered_map<int,vector<int>>&m,int s,vector<int>&vis){
+    if(vis[s]) return;
+    vis[s]=1;
+    for(int i:m[s])
+        if(!vis[i]) dfs(m,i,vis);
+}
+
+int makeConnected(int n, vector<vector<int>>& connections) {
+    if(n>connections.size()+1) return -1;
+    unordered_map<int,vector<int>>m;
+    for(vector<int>v:connections){
+        m[v[0]].push_back(v[1]);
+        m[v[1]].push_back(v[0]);
+    }
+    int ans=-1;
+    vector<int>vis(n,0);
+    for(int i=0;i<n;i++)
+        if(!vis[i]) dfs(m,i,vis),ans++;
+    
+    return ans;
+}
+
 ----------------------------------------------------------
 11. word Ladder 
 
