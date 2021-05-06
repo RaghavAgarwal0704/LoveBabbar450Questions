@@ -86,6 +86,28 @@ bool isCycle(int V, vector<int> adj[]) {
 ----------------------------------------------------------
 8. flood fill algo
 
+vector<int>dir{1,0,-1,0,1};
+vector<vector<int>> util(vector<vector<int>>& image, int sr, int sc, int newColor,int prev) {
+    if(sr<0 || sc<0 || sr>=image.size() || sc>=image[0].size() || image[sr][sc]!=prev) return image;
+    if(image[sr][sc]==newColor) return image;
+    
+    int x=image[sr][sc];
+    image[sr][sc]=newColor;
+    for(int k=0;k<4;k++)
+        image=util(image,sr+dir[k],sc+dir[k+1],newColor,x);
+
+    // image=util(image,sr+1,sc,newColor,x);
+    // image=util(image,sr,sc-1,newColor,x);
+    // image=util(image,sr-1,sc,newColor,x);
+    // image=util(image,sr,sc-1,newColor,x);
+
+    return image; 
+}
+
+vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int newColor) {
+    return util(image,sr,sc,newColor,image[sr][sc]); 
+}
+
 ----------------------------------------------------------
 9. Clone a graph
 
