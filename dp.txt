@@ -720,6 +720,24 @@ int knapSack(int n, int W, int val[], int wt[]) {
 ----------------------------------------------
 49. Optimal Strategy for a Game
 
+vector<vector<int>>dp;
+long long util(int arr[], int i,int j){
+    if(i>j) return 0;
+    if(i==j) return dp[i][j]=arr[i];
+    if(j-i==1) return dp[i][j]=max(arr[i],arr[j]);
+    if(dp[i][j]!=-1) return dp[i][j];
+    return dp[i][j]=max(
+        arr[i]+min(util(arr,i+2,j),util(arr,i+1,j-1)),
+        arr[j]+min(util(arr,i+1,j-1),util(arr,i,j-2))
+    );
+}
+
+long long maximumAmount(int arr[], int n) 
+{
+    dp=vector<vector<int>>(n+1,vector<int>(n+1,-1));
+    return util(arr,0,n-1);
+}
+
 ----------------------------------------------
 50. Optimal Binary Search Tree
 
