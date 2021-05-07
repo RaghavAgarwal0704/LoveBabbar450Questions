@@ -494,6 +494,47 @@ bool isPalindrome(Node *head)
 ----------------------------------------------------------------------
 29. Sort a LL of 0's, 1's and 2's
 
+method 1: count 0s,1s,2s => then just change the data of the given linked list.
+
+method 2: create three linked list and then just connect them.
+
+Node* segregate(Node *head) {
+        
+        // Add code here
+        Node *zero = new Node(0);
+        Node *one  = new Node(0);
+        Node *two  = new Node(0);
+        
+        Node *zero_p = zero;
+        Node *one_p  = one;
+        Node *two_p  = two;
+        
+        Node* curr=head;
+        while(curr){
+            if(curr->data==0){
+                zero->next=curr;
+                zero=zero->next;
+                curr=curr->next;
+            }
+            else if(curr->data==1){
+                one->next=curr;
+                one=one->next;
+                curr=curr->next;
+            }
+            else{
+                two->next=curr;
+                two=two->next;
+                curr=curr->next;
+            }
+        }
+        head=zero_p->next;
+        zero->next=one_p->next?one_p->next:two_p->next;
+        one->next=two_p->next;
+        two->next=nullptr;
+        return head;
+        
+    }
+
 ----------------------------------------------------------------------
 30. Clone a linked list with next and random pointer
 
