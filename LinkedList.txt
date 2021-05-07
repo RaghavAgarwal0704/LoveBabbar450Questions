@@ -547,8 +547,25 @@ Node* segregate(Node *head) {
 ----------------------------------------------------------------------
 33. Delete nodes which have a greater value on right side
 
+
+
 ----------------------------------------------------------------------
 34. Segregate even and odd nodes in a Linked List
+
+Node* divide(int n, Node *head){
+        int e[n],o[n];
+        int i=0,j=0;
+        Node *curr=head;
+        while(curr){
+            if(curr->data%2==0){e[i++]=curr->data;}
+            else o[j++]=curr->data; 
+            curr=curr->next;
+        }
+        curr=head;
+        for(int k=0;k<i;k++){curr->data=e[k];curr=curr->next;}
+        for(int k=0;k<j;k++){curr->data=o[k];curr=curr->next;}
+        return head;
+    }
 
 ----------------------------------------------------------------------
 35. Program for n’th node from the end of a Linked List
