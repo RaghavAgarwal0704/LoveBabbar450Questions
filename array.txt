@@ -468,7 +468,8 @@ string isSubset(int a1[], int a2[], int n, int m) {
 
 -------------------------------------------------------------------------------
 28. find triplet that sum to a given value.
-
+naive : time=o(n^3)  space=o(1)
+using hash tabel: time=o(n^2) space=o(n)
 O(N^2) time O(1) space : Using 2 pointers.
 bool find3Numbers(int A[], int n, int X)
 {
