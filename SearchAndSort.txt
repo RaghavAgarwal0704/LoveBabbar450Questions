@@ -1,10 +1,71 @@
 1. Find first and last positions of an element in a sorted array
 
+naive: o(n)
+
+o(log n):
+
+int first(int arr[], int x, int n)
+{
+    int low = 0, high = n - 1, res = -1;
+    while (low <= high) {
+        // Normal Binary Search Logic
+        int mid = (low + high) / 2;
+        if (arr[mid] > x)
+            high = mid - 1;
+        else if (arr[mid] < x)
+            low = mid + 1;
+ 
+        // If arr[mid] is same as x, we
+        // update res and move to the left
+        // half.
+        else {
+            res = mid;
+            high = mid - 1;
+        }
+    }
+    return res;
+}
+ 
+/* if x is present in arr[] then returns the index of
+LAST occurrence of x in arr[0..n-1], otherwise
+returns -1 */
+int last(int arr[], int x, int n)
+{
+    int low = 0, high = n - 1, res = -1;
+    while (low <= high) {
+        // Normal Binary Search Logic
+        int mid = (low + high) / 2;
+        if (arr[mid] > x)
+            high = mid - 1;
+        else if (arr[mid] < x)
+            low = mid + 1;
+ 
+        // If arr[mid] is same as x, we
+        // update res and move to the right
+        // half.
+        else {
+            res = mid;
+            low = mid + 1;
+        }
+    }
+    return res;
+}
+
 ---------------------------------------------------------------
 2. Find a Fixed Point (Value equal to index) in a given array
 
+vector<int> valueEqualToIndex(int arr[], int n) {
+	    vector<int>vec;
+	    for(int i=0;i<n;i++){
+	        if(arr[i]==i+1)vec.push_back(i+1);
+	    }
+	    return vec;
+	}
+
 ---------------------------------------------------------------
 3. Search in a rotated sorted array
+
+
 
 ---------------------------------------------------------------
 4. square root of an integer
