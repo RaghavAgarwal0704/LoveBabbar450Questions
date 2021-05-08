@@ -86,12 +86,79 @@ https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
 
 ---------------------------------------------------------------
 8. find majority element
+ o(n^2) o(1) => o(nlogn) o(1) => o(n) o(n) 
+ 
+ best => o(n) o(1) ---Moore's Voting algorithm-----https://www.youtube.com/watch?v=kRKZ0s2TjJw
+ 
+ int findCandidate(int a[], int size)
+{
+    int maj_index = 0, count = 1;
+    for (int i = 1; i < size; i++) {
+        if (a[maj_index] == a[i])
+            count++;
+        else
+            count--;
+        if (count == 0) {
+            maj_index = i;
+            count = 1;
+        }
+    }
+    return a[maj_index];
+}
+
+/* Function to check if the candidate
+   occurs more than n/2 times */
+bool isMajority(int a[], int size, int cand)
+{
+    int count = 0;
+    for (int i = 0; i < size; i++)
+
+        if (a[i] == cand)
+            count++;
+
+    if (count > size / 2)
+        return 1;
+
+    else
+        return 0;
+}
+
+/* Function to print Majority Element */
+void printMajority(int a[], int size)
+{
+    /* Find the candidate for Majority*/
+    int cand = findCandidate(a, size);
+
+    /* Print the candidate if it is Majority*/
+    if (isMajority(a, size, cand))
+        cout << " " << cand << " ";
+
+    else
+        cout << "No Majority Element";
+}
+ 
 
 ---------------------------------------------------------------
 9. Searching in an array where adjacent differ by at most k
 
+
+
 ---------------------------------------------------------------
 10. find a pair with a given difference
+
+naive: o(n^2)
+efficient: o(nlogn)
+
+bool findPair(int arr[], int size, int n){
+    sort(arr,arr+size);
+    int i=0,j=1;
+    while(i<size && j<size){
+        if(arr[j]-arr[i]==n)return true;
+        else if(arr[j]-arr[i]<n)j++;
+        else i++;
+    }
+    return false;
+}
 
 ---------------------------------------------------------------
 11. find four elements that sum to a given value
