@@ -64,7 +64,10 @@ vector<int> valueEqualToIndex(int arr[], int n) {
 
 ---------------------------------------------------------------
 3. Search in a rotated sorted array
+ 
+naive: linear search
 
+efficient: binary search
 
 
 ---------------------------------------------------------------
@@ -78,6 +81,8 @@ vector<int> valueEqualToIndex(int arr[], int n) {
 
 ---------------------------------------------------------------
 7. Find the repeating and the missing
+
+https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
 
 ---------------------------------------------------------------
 8. find majority element
