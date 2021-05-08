@@ -169,7 +169,32 @@ vector<int> topoSort(int V, vector<int> adj[]) {
 15. Find whether it is possible to finish all tasks or not from given dependencies
 
 ----------------------------------------------------------
-16. Find the no. of Isalnds
+16. Find the no. of Islands
+
+vector<int> dir{-1, 0, 1, 0, -1, 1, 1, -1, -1};
+void util(int i, int j, vector<vector<char>>& grid) {
+    if (i < 0 || j < 0 || i >= grid.size() || j >= grid[0].size() || grid[i][j] == '0') return;
+    grid[i][j] = '0';
+    for (int k = 0; k <= 7; k++) util(i + dir[k], j + dir[k + 1], grid);
+    // util(i-1,j,grid);
+    // util(i,j+1,grid);
+    // util(i+1,j,grid);
+    // util(i,j-1,grid);
+    // util(i-1,j+1,grid);
+    // util(i+1,j+1,grid);
+    // util(i+1,j-1,grid);
+    // util(i-1,j-1,grid);
+}
+int numIslands(vector<vector<char>>& grid) {
+    int ans = 0;
+    for (int i = 0; i < grid.size(); i++)
+        for (int j = 0; j < grid[0].size(); j++)
+            if (grid[i][j] == '1') {
+                ans++;
+                util(i, j, grid);
+            }
+    return ans;
+}
 
 ----------------------------------------------------------
 17. Given a sorted Dictionary of an Alien Language, find order of characters
