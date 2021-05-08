@@ -145,6 +145,23 @@ int makeConnected(int n, vector<vector<int>>& connections) {
 ----------------------------------------------------------
 13. Implement Topological Sort 
 
+vector<int> ans;
+void util(int v, vector<int> adj[], vector<bool>& visited) {
+    visited[v] = true;
+    for (int i : adj[v]) {
+        if (!visited[i]) util(i, adj, visited);
+    }
+    ans.push_back(v);
+}
+
+vector<int> topoSort(int V, vector<int> adj[]) {
+    vector<bool> visited(V, false);
+    for (int i = 0; i < V; i++)
+        if (!visited[i]) util(i, adj, visited);
+    reverse(ans.begin(), ans.end());
+    return ans;
+}
+
 ----------------------------------------------------------
 14. Minimum time taken by each job to be completed given by a Directed Acyclic Graph
 
