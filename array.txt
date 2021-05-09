@@ -444,6 +444,36 @@ bool subArrayExists(int arr[], int n)
 ----------------------------------------------------------
 22. facorial of a large number.
 
+int multiply(int res[],int x,int res_size){
+        int carry=0,prod;
+        for(int i=0;i<res_size;i++){
+            prod=x*res[i]+carry;
+            res[i]=prod%10;
+            carry=prod/10;
+        }
+        while(carry){
+            res[res_size++]=carry%10;
+            carry=carry/10;
+        }
+        return res_size;
+    } 
+    vector<int> factorial(int n){
+        int res[10000];
+        vector<int>vec;
+        int res_size=1;
+        res[0]=1;
+        for(int i=2;i<=n;i++){
+            res_size=multiply(res,i,res_size);
+        }
+        for(int i=res_size-1;i>=0;i--){
+            vec.push_back(res[i]);
+            //cout<<res[i]<<endl;
+        }
+        return vec;
+    }
+    
+----------------OR---------------------
+
 vector<int> factorial(int N){
     vector<int>ans({1});
     for(int i=2;i<=N;i++){
