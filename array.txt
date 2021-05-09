@@ -165,7 +165,31 @@ int maxSubarraySum(int arr[], int n){
 }
 
 
---------How to find the actual subarray that contains the max sum?
+--------How to find the actual subarray that contains the max sum?-----------
+
+int maxSubarraySum(int arr[], int n){
+        
+        // Your code here
+        int curr_max=arr[0],g_max=arr[0],l_start=0,l_end=0,g_start=0,g_end=0;
+        for(int i=1;i<n;i++){
+            if(arr[i]+curr_max>arr[i]){
+                curr_max+=arr[i];
+                l_end=i;
+            }
+            else {
+                curr_max=arr[i];
+                l_start=i;
+                l_end=i;
+            }
+            if(g_max<curr_max){
+                g_max=curr_max;
+                g_start=l_start;
+                g_end=l_end;
+            }
+        }
+        cout<<g_start<<" "<<g_end<<endl;
+        return g_max;
+    }
 
 
 --------------------------------------------------
