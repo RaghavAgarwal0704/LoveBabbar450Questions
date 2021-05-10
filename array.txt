@@ -496,6 +496,21 @@ vector<int> factorial(int N){
 ----------------------------------------------------------
 23. Maximum product subarray.
 
+long long maxProduct(int *arr, int n) {
+	    long long mi=arr[0];
+	    long long ma=arr[0];
+	    long long prod=arr[0];
+	    for(int i=1;i<n;i++){
+	       if(arr[i]<0)swap(mi,ma);
+	       //mi=min(mi*arr[i],arr[i]);
+	       //ma=max(ma*arr[i],arr[i]);
+	       mi=mi*arr[i]<arr[i]?mi*arr[i]:arr[i];
+	       ma=ma*arr[i]>arr[i]?ma*arr[i]:arr[i];
+	       if(ma>prod)prod=ma;
+	    }
+	    return prod;
+	}
+
 ----------------------------------------------------------
 24. longest consecutive subsequence.
 
