@@ -36,6 +36,29 @@ vector<int> reverseLevelOrder(Node *root)
     return vec;
 }
 
+- Not using extra stack
+
+vector<int> reverseLevelOrder(Node *root)
+{
+    queue<Node*> q;
+    vector<int> ans;
+    q.push(root);
+    while (!q.empty()) {
+        int n = q.size();
+        int i=ans.size();
+        while (n--) {
+            Node* x = q.front();
+            ans.push_back(x->data);
+            q.pop();
+            if (x->left) q.push(x->left);
+            if (x->right) q.push(x->right);
+        }
+        reverse(ans.begin()+i,ans.end());
+    }
+    reverse(ans.begin(),ans.end());
+    return ans;
+}
+
 ---------------------------------------------------------------
 3. HEIGHT OF A TREE
 
