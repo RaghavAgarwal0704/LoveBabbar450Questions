@@ -129,7 +129,7 @@ struct Pair getMinMax(int arr[], int n)
 
 method 1: sorting = o(nlogn)
 
-method 2:
+method 2: using heap
 
 
 ----------------------------------
