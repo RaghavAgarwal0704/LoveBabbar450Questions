@@ -106,6 +106,14 @@ int rowWithMax1s(bool mat[R][C])
 ------------------------------------
 8. Rotate matrix by 90 degrees
 
+void rotate(vector<vector<int> >& matrix) {
+    int n = matrix.size();
+    for (auto& v : matrix) reverse(v.begin(), v.end());
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+            if (j > i) swap(matrix[i][j], matrix[j][i]);
+}
+
 ------------------------------------
 9. Kth smallest element in a row-cpumn wise sorted matrix
 
