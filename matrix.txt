@@ -1,5 +1,27 @@
 1. Spiral traversal on a Matrix
 
+vector<int> spirallyTraverse(vector<vector<int> > matrix, int r, int c) {
+    int r1 = 0, r2 = r - 1, c1 = c - 1, c2 = 0;
+    vector<int> ans;
+    while (r1 <= r2 && c1 >= c2) {
+        if (r1 == r2)
+            for (int i = c2; i <= c1; i++) ans.push_back(matrix[r1][i]);
+        if (r1 != r2)
+            for (int i = c2; i <= c1; i++) ans.push_back(matrix[r1][i]);
+        if (c1 == c2)
+            for (int i = r1 + 1; i <= r2 - 1; i++) ans.push_back(matrix[i][c1]);
+        if (c1 != c2)
+            for (int i = r1 + 1; i <= r2 - 1; i++) ans.push_back(matrix[i][c1]);
+        if (r1 != r2)
+            for (int i = c1; i >= c2; i--) ans.push_back(matrix[r2][i]);
+        if (c1 != c2)
+            for (int i = r2 - 1; i >= r1 + 1; i--) ans.push_back(matrix[i][c2]);
+
+        r1++, r2--, c1--, c2++;
+    }
+
+    return ans;
+}
 ------------------------------------
 2. Search an element in a matrix
 
