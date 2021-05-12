@@ -142,6 +142,25 @@ int makeConnected(int n, vector<vector<int>>& connections) {
 ----------------------------------------------------------
 12. Dijkstra algo
 
+vector<int> dijkstra(int V, vector<vector<int>> adj[], int S) {
+    vector<int> dist(V + 1, INT_MAX);
+    dist[S] = 0;
+    vector<bool> vis(V, false);
+    for (int a = 0; a < V; a++) {
+        int x = S;
+        int m = INT_MAX;
+        for (int j = 0; j < V; j++)
+            if (!vis[j] && dist[j] < m)
+                m = dist[j], x = j;
+
+        vis[x] = true;
+        for (auto i : adj[x]) {
+            if (!vis[i[0]] && dist[x] + i[1] < dist[i[0]])
+                dist[i[0]] = dist[x] + i[1];
+        }
+    }
+    return dist;
+}
 ----------------------------------------------------------
 13. Implement Topological Sort 
 
