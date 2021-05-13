@@ -1,4 +1,19 @@
 1. Find a value in a BST
+time=o(log n) space= o(1)
+
+struct node* search(struct node* root, int key)
+{
+    // Base Cases: root is null or key is present at root
+    if (root == NULL || root->key == key)
+       return root;
+    
+    // Key is greater than root's key
+    if (root->key < key)
+       return search(root->right, key);
+ 
+    // Key is smaller than root's key
+    return search(root->left, key);
+}
 
 -----------------------------------------------
 2. Deletion of a node in a BST
