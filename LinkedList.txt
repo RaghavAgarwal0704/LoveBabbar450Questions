@@ -203,8 +203,20 @@ int detectloop(Node *head) {
 
 ----------------------------------------------------------------------
 4. Write a program to Delete loop in a linked list.
-
-
+ naive: using hashmap-->time=o(n) space=o(n)
+ void removeLoop(Node* head)
+    {
+        Node* curr=head,*prev=NULL;
+        set<Node*>s;
+        while(curr){
+            if(s.find(curr)!=s.end()){prev->next=NULL;break;}
+            s.insert(curr);
+            prev=curr;
+            curr=curr->next;
+        }
+    }
+    
+ efficient: todo
 
 ----------------------------------------------------------------------
 5. Find the starting point of the loop. 
