@@ -16,11 +16,12 @@ struct Node* reverseList(struct Node *head)
 }
 
 RECURSIVE: pass 2 nodes to function prev and current node and make current->next = prev. Then recursive call the function with current node as prev node. And if current node is NULL return prev node
-Node* reverseUtil(Node* pre,Node* head){
-    if(!head) return pre;
-    Node* next=head->next;
-    head->next=pre;
-    return reverseUtil(head,next);
+--same as iterative 
+Node* reverseUtil(Node* prev,Node* curr){
+    if(!curr) return prev;
+    Node* next=curr->next;
+    curr->next=prev;
+    return reverseUtil(curr,next);
 }
 Node *reverseList(Node *head)
 {
@@ -31,6 +32,83 @@ Node *reverseList(Node *head)
 ----------------------------------------------------------------------
 2. Reverse a Linked List in group of Given Size. [Very Imp]
 
+method 1 : using stack,,time=o(n) space=o(k)
+struct node *reverse (struct node *head, int k)
+    { 
+        stack<node*>st;
+        struct node* prev=NULL;
+        struct node * curr=head;
+        while(curr){
+            int count=0;
+            while(curr && count!=k){
+                st.push(curr);
+                curr=curr->next;
+                count++;
+            }
+            while(!st.empty()){
+                if(prev==NULL){
+                    prev=st.top();
+                    st.pop();
+                    head=prev;
+                }
+                else{
+                    prev->next=st.top();
+                    st.pop();
+                    prev=prev->next;
+                }
+            }
+        }
+        prev->next=NULL;
+        return head;
+    }
+    
+
+efficient: time=o(n) space=o(1)
+
+Node* reverse(struct Node* head, int k)
+{
+    Node* prev = NULL;
+    Node* curr = head;
+    Node* temp = NULL;
+    Node* tail = NULL;
+    Node* newHead = NULL;
+    Node* join = NULL;
+    int t = 0;
+  
+    // Traverse till the end of the linked list
+    while (curr) {
+        t = k;
+        join = curr;
+        prev = NULL;
+  
+        // Reverse group of k nodes of the linked list
+        while (curr && t--) {
+            temp = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = temp;
+        }
+  
+        // Sets the new head of the input list
+        if (!newHead)
+            newHead = prev;
+  
+        /* Tail pointer keeps track of the last node 
+        of the k-reversed linked list. We join the 
+        tail pointer with the head of the next 
+        k-reversed linked list's head */
+        if (tail)
+            tail->next = prev;
+  
+        /* The tail is then updated to the last node 
+        of the next k-reverse linked list */
+        tail = join;
+    }
+  
+    /* newHead is new head of the input list */
+    return newHead;
+}
+-----------OR--------------------
 struct node *reverseList(struct node *head, int k) {
     struct node *pre = NULL, *ptr = head, *temp = head;
     while (k-- && ptr) {
@@ -60,6 +138,57 @@ struct node *reverse(struct node *head, int k) {
 ----------------------------------------------------------------------
 3. Write a program to Detect loop in a linked list.
 
+naive: time=space=n-->using hashmap
+bool detectLoop(Node* head){
+        set<Node*>s;
+        Node* curr=head;
+        while(curr){
+            if(s.find(curr)!=s.end())return true;
+            s.insert(curr);
+            curr=curr->next;
+        }
+        return false;
+    }
+    
+    
+ method 2:(but org list is modified here) whichever node is visited just make its next point to a temp node--> time=n space=1
+ 
+ bool detectLoop(Node* head)
+{
+ 
+    // Create a temporary node
+    Node* temp = new Node;
+    while (head != NULL) {
+ 
+        // This condition is for the case
+        // when there is no loop
+        if (head->next == NULL) {
+            return false;
+        }
+ 
+        // Check if next is already
+        // pointing to temp
+        if (head->next == temp) {
+            return true;
+        }
+ 
+        // Store the pointer to the next node
+        // in order to get to it in the next step
+        Node* nex = head->next;
+ 
+        // Make next point to temp
+        head->next = temp;
+ 
+        // Get to the next node in the list
+        head = nex;
+    }
+ 
+    return false;
+}
+ 
+ 
+efficient: floyds cycle detecttion-->time=n space=1
+
 int detectloop(Node *head) {
     Node *slow = head;
     Node *fast = head;
@@ -74,6 +203,8 @@ int detectloop(Node *head) {
 
 ----------------------------------------------------------------------
 4. Write a program to Delete loop in a linked list.
+
+
 
 ----------------------------------------------------------------------
 5. Find the starting point of the loop. 
