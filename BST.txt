@@ -1,5 +1,5 @@
 1. Find a value in a BST
-time=o(log n) space= o(1)
+time=o(h) space= o(1) -->h=height(in worst case=skewd tree h=n otherwise h=log n)
 
 struct node* search(struct node* root, int key)
 {
@@ -19,10 +19,20 @@ struct node* search(struct node* root, int key)
 2. Deletion of a node in a BST
 
 -----------------------------------------------
-3. Find min and max value in a BST
+3. Find min and max value in a BST-->o(h) o(1)
+
+int minValue(Node* root)
+{   
+    if(!root)return -1;
+    while(root->left){
+        root=root->left;
+    }
+    return root->data;
+}
 
 -----------------------------------------------
 4. Find inorder successor and inorder predecessor in a BST
+
 
 -----------------------------------------------
 5. Check if a tree is a BST or not 
