@@ -562,7 +562,23 @@ bool isCircular(Node *head)
 }
 
 ----------------------------------------------------------------------
-17. Split a Circular linked list into two halves.
+17. Split a Circular linked list into two halves-->using slow and fast pointer
+
+void splitList(Node *head, Node **head1, Node **head2)
+{
+    Node * slow=head;
+    Node * fast=head;
+    while(fast->next!=head && fast->next->next!=head)///note this
+    {
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    if(fast->next!=head)fast=fast->next;
+    *head1=head;
+    *head2=slow->next;
+    slow->next=*head1;
+    fast->next=*head2;
+}
 
 
 
@@ -572,7 +588,7 @@ bool isCircular(Node *head)
 method 1: use stack--naive time o(n) space o(n)
 
 
-method 2: time o(n) space o(1)
+method 2: time o(n) space o(1)--->instead of reversing the whole list can also reverse the second half of the list(slow and fast pointer approach) then check
 
 void reverse(Node **head){
     Node* curr=*head,*next=NULL,*prev=NULL;
@@ -607,8 +623,58 @@ bool isPalindrome(Node *head)
 ----------------------------------------------------------------------
 19. Deletion from a Circular Linked List.
 
+void deleteNode(Node** head, int key)
+{
+     
+    // If linked list is empty
+    if (*head == NULL)
+        return;
+         
+    // If the list contains only a single node
+    if((*head)->data==key && (*head)->next==*head)
+    {
+        free(*head);
+        *head=NULL;
+        return;
+    }
+     
+    Node *last=*head,*d;
+     
+    // If head is to be deleted
+    if((*head)->data==key)
+    {
+         
+        // Find the last node of the list
+        while(last->next!=*head)
+            last=last->next;
+             
+        // Point last node to the next of head i.e.
+        // the second node of the list
+        last->next=(*head)->next;
+        free(*head);
+        *head=last->next;
+    }
+     
+    // Either the node to be deleted is not found
+    // or the end of list is not reached
+    while(last->next!=*head&&last->next->data!=key)
+    {
+        last=last->next;
+    }
+     
+    // If node to be deleted was found
+    if(last->next->data==key)
+    {
+        d=last->next;
+        last->next=d->next;
+        free(d);
+    }
+    else
+        cout<<"no such keyfound";
+    }
 ----------------------------------------------------------------------
 20. Reverse a Doubly Linked list.
+
 
 ----------------------------------------------------------------------
 21. Find pairs with a given sum in a DLL.
