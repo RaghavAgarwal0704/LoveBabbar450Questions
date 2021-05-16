@@ -14,6 +14,104 @@ vector<int> levelOrder(Node * node){
     return vec;
 }
 
+modified level order-->change direction of printing after every two levels
+void modifiedLevelOrder(struct Node* node)
+{
+    // For null root
+    if (node == NULL)
+        return;
+ 
+    if (node->left == NULL &&
+                      node->right == NULL)
+    {
+        cout << node->data;
+        return;
+    }
+ 
+    // Maintain a queue for normal
+    // level order traversal
+    queue<Node*> myQueue;
+ 
+    /* Maintain a stack for printing nodes in reverse
+       order after they are popped out from queue.*/
+    stack<Node*> myStack;
+ 
+    struct Node* temp = NULL;
+ 
+    // sz is used for storing the count
+    // of nodes in a level
+    int sz;
+ 
+    // Used for changing the direction
+    // of level order traversal
+    int ct = 0;
+ 
+    // Used for changing the direction
+    // of level order traversal
+    bool rightToLeft = false;
+ 
+    // Push root node to the queue
+    myQueue.push(node);
+ 
+    // Run this while loop till queue got empty
+    while (!myQueue.empty())
+    {
+        ct++;
+ 
+        sz = myQueue.size();
+ 
+        // Do a normal level order traversal
+        for (int i = 0; i < sz; i++)
+        {
+            temp = myQueue.front();
+            myQueue.pop();
+ 
+            /*For printing nodes from left to right,
+            simply print the nodes in the order in which
+            they are being popped out from the queue.*/
+            if (rightToLeft == false)
+                cout << temp->data << " ";           
+ 
+            /* For printing nodes
+            from right to left,
+            push the nodes to stack
+            instead of printing them.*/
+            else
+                myStack.push(temp);           
+ 
+            if (temp->left)
+                myQueue.push(temp->left);
+ 
+            if (temp->right)
+                myQueue.push(temp->right);
+        }
+ 
+        if (rightToLeft == true)
+        {
+ 
+            // for printing the nodes in order
+            // from right to left
+            while (!myStack.empty())
+            {
+                temp = myStack.top();
+                myStack.pop();
+ 
+                cout << temp->data << " ";
+            }
+        }
+ 
+        /*Change the direction of printing
+        nodes after every two levels.*/
+        if (ct == 2)
+        {
+            rightToLeft = !rightToLeft;
+            ct = 0;
+        }
+ 
+        cout << "\n";
+    }
+}
+
 ---------------------------------------------------------------
 2. REVERSE LEVEL ORDER TRAVERSAL
 
@@ -64,6 +162,45 @@ vector<int> reverseLevelOrder(Node *root)
 
 int height(struct Node* node){
         return node?1+max(height(node->left),height(node->right)):0;
+}
+
+iterative method:
+int treeHeight(node *root)
+{
+    // Base Case
+    if (root == NULL)
+        return 0;
+  
+    // Create an empty queue for level order tarversal
+    queue<node *> q;
+  
+    // Enqueue Root and initialize height
+    q.push(root);
+    int height = 0;
+  
+    while (1)
+    {
+        // nodeCount (queue size) indicates number of nodes
+        // at current lelvel.
+        int nodeCount = q.size();
+        if (nodeCount == 0)
+            return height;
+  
+        height++;
+  
+        // Dequeue all nodes of current level and Enqueue all
+        // nodes of next level
+        while (nodeCount > 0)
+        {
+            node *node = q.front();
+            q.pop();
+            if (node->left != NULL)
+                q.push(node->left);
+            if (node->right != NULL)
+                q.push(node->right);
+            nodeCount--;
+        }
+    }
 }
 
 ---------------------------------------------------------------
