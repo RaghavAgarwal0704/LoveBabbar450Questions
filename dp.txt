@@ -1,3 +1,39 @@
+0. fibonnaci
+method 1: using recursion-->exponential
+
+method 2: using dp (bottom up)-->tabulation
+
+method 3: using dp (top down)-->memoization
+
+class Solution {
+  public:
+    long long int dp[1000];
+    long long int fib(long long int n){
+        long long int first;
+        long long int second;
+        if(n<=1)return n;
+        if(dp[n-1]!=-1)first=dp[n-1];
+        else first=fib(n-1);
+        if(dp[n-2]!=-1)second=dp[n-2];
+        else second=fib(n-2);
+        return dp[n]=(first+second)%cons;
+    }
+    long long int nthFibonacci(long long int n){
+        memset(dp,-1,sizeof(dp));
+        return fib(n);
+    }
+};
+
+
+method 4: direct formula--> constant space and time
+Fn = {[(√5 + 1)/2] ^ n} / √5 
+
+int fib(int n) {
+  double phi = (1 + sqrt(5)) / 2;
+  return round(pow(phi, n) / sqrt(5));
+}
+
+------------------------------
 1. Coin ChangeProblem
 (1) Naīve Recursive method : 
 long long int count( int S[], int m, int n ){
