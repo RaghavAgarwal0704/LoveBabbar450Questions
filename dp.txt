@@ -498,6 +498,8 @@ int maximizeTheCuts(int n, int x, int y, int z) {
 ----------------------------------------------
 14. Longest Common Subsequence
 
+in copy
+---------------------OR-----------------------
 (1) Recursive with memoization :
 vector<vector<int>> dp;
 int util(int x, int y, string s1, string s2) {
@@ -530,6 +532,22 @@ int lcs(int x, int y, string s1, string s2) {
 }
 ----------------------------------------------
 15. Longest Repeated Subsequence
+
+int find(string a,string b,int m,int n){
+	        int dp[m+1][n+1];
+	        for(int i=0;i<=m;i++)dp[i][0]=0;
+	        for(int j=0;j<=n;j++)dp[0][j]=0;
+	        for(int i=1;i<=m;i++){
+	            for(int j=1;j<=n;j++){
+	                if(a[i-1]==b[j-1]&&i!=j)dp[i][j]=1+dp[i-1][j-1];
+	                else dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+	            }
+	        }
+	        return dp[m][n];
+	    }
+		int LongestRepeatingSubsequence(string str){
+		    return find(str,str,str.size(),str.size());
+		}
 
 ----------------------------------------------
 16. Longest Increasing Subsequence
