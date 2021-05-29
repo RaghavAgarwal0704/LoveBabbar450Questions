@@ -984,3 +984,22 @@ int minCost(int N, vector<int> cost[]) {
 
     return *min_element(dp[N].begin(), dp[N].end());
 }
+
+-------------------------------------------------------
+
+64. Count ways to reach the n'th stair
+
+https://practice.geeksforgeeks.org/problems/count-ways-to-reach-the-nth-stair-1587115620/1
+
+int countWays(int n) {
+    int mod = 1e9 + 7;
+    if (n == 1) return 1;
+    if (n == 2) return 2;
+    int a = 1, b = 2;
+    for (int i = 3; i <= n; i++) {
+        int temp = b;
+        b = (b + a) % mod;
+        a = temp;
+    }
+    return b % mod;
+}
