@@ -1003,3 +1003,24 @@ int countWays(int n) {
     }
     return b % mod;
 }
+
+-------------------------------------------------------
+
+65. Skip the work
+
+https://practice.geeksforgeeks.org/problems/skip-the-work5752/1
+
+int minAmount(int A[], int N) {
+    //code here.
+
+    int a = 0;
+    if (N == 0) return a;
+    int b = A[0];
+    if (N == 1) return b;
+    for (int i = 2; i <= N; i++) {
+        int temp = b;
+        b = min(b, a) + A[i - 1];
+        a = temp;
+    }
+    return min(b, a);
+}
