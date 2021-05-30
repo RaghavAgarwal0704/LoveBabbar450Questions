@@ -1082,3 +1082,23 @@ int maxCalories(int arr[], int n) {
     }
     return c;
 }
+
+-------------------------------------------------------
+
+68. Maximum path sum in matrix 
+
+https://practice.geeksforgeeks.org/problems/path-in-matrix3805/1
+
+int maximumPath(int N, vector<vector<int>> Matrix)
+{
+    int ans=0;
+    vector<vector<int>> dp(N+1,vector<int>(N+2,0));
+    
+    for(int i=1;i<=N;i++){
+        for(int j=1;j<=N;j++){
+            dp[i][j]=max(dp[i-1][j],max(dp[i-1][j+1],dp[i-1][j-1]))+Matrix[i-1][j-1];
+            if(i==N) ans=max(ans,dp[N][j]);
+        }
+    }
+    return ans;
+}
