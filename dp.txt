@@ -1102,3 +1102,22 @@ int maximumPath(int N, vector<vector<int>> Matrix)
     }
     return ans;
 }
+
+-------------------------------------------------------
+
+69. Stickler Thief
+
+https://practice.geeksforgeeks.org/problems/stickler-theif-1587115621/1
+
+typedef long long int ll;
+ll FindMaxSum(ll arr[], ll n) {
+    ll a = arr[0];
+    if (n == 1) return a;
+    ll b = max(arr[0], arr[1]);
+    for (int i = 2; i < n; i++) {
+        ll temp = b;
+        b = max(arr[i] + a, b);
+        a = temp;
+    }
+    return b;
+}
