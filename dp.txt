@@ -1172,3 +1172,25 @@ int NumberOfPath(int a, int b) {
             dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
     return dp[a][b];
 }
+
+-------------------------------------------------------
+
+72. Count number of hops
+
+https://practice.geeksforgeeks.org/problems/count-number-of-hops-1587115620/1
+
+long long countWays(int n) {
+    int mod = 1000000007;
+    int a = 1, b = 2, c = 4;
+    if (n == 1) return 1;
+    if (n == 2) return 2;
+    if (n == 3) return 4;
+    for (int i = 4; i <= n; i++) {
+        int temp = c;
+        c = ((long long int)c + a + b) % mod;
+        int temp2 = b;
+        b = temp;
+        a = temp2;
+    }
+    return c;
+}
