@@ -1,0 +1,244 @@
+## 1. Find first and last positions of an element in a sorted array
+
+naive: o(n)
+
+o(log n):
+```cpp
+int first(int arr[], int x, int n)
+{
+    int low = 0, high = n - 1, res = -1;
+    while (low <= high) {
+        // Normal Binary Search Logic
+        int mid = (low + high) / 2;
+        if (arr[mid] > x)
+            high = mid - 1;
+        else if (arr[mid] < x)
+            low = mid + 1;
+ 
+        // If arr[mid] is same as x, we
+        // update res and move to the left
+        // half.
+        else {
+            res = mid;
+            high = mid - 1;
+        }
+    }
+    return res;
+}
+ 
+/* if x is present in arr[] then returns the index of
+LAST occurrence of x in arr[0..n-1], otherwise
+returns -1 */
+int last(int arr[], int x, int n)
+{
+    int low = 0, high = n - 1, res = -1;
+    while (low <= high) {
+        // Normal Binary Search Logic
+        int mid = (low + high) / 2;
+        if (arr[mid] > x)
+            high = mid - 1;
+        else if (arr[mid] < x)
+            low = mid + 1;
+ 
+        // If arr[mid] is same as x, we
+        // update res and move to the right
+        // half.
+        else {
+            res = mid;
+            low = mid + 1;
+        }
+    }
+    return res;
+}
+```
+
+---------------------------------------------------------------
+## 2. Find a Fixed Point (Value equal to index) in a given array
+```cpp
+vector<int> valueEqualToIndex(int arr[], int n) {
+    vector<int>vec;
+    for(int i=0;i<n;i++){
+        if(arr[i]==i+1)vec.push_back(i+1);
+    }
+    return vec;
+}
+```
+
+---------------------------------------------------------------
+## 3. Search in a rotated sorted array
+ 
+naive: linear search
+
+efficient: binary search
+
+
+---------------------------------------------------------------
+## 4. square root of an integer
+
+---------------------------------------------------------------
+## 5. Maximum and minimum of an array using minimum number of comparisons
+
+---------------------------------------------------------------
+## 6. Optimum location of point to minimize total distance
+
+---------------------------------------------------------------
+## 7. Find the repeating and the missing
+
+https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/
+
+---------------------------------------------------------------
+## 8. find majority element
+o(n^2) o(1) => o(nlogn) o(1) => o(n) o(n) 
+ 
+best => o(n) o(1) ---Moore's Voting algorithm-----https://www.youtube.com/watch?v=kRKZ0s2TjJw
+```cpp
+int findCandidate(int a[], int size)
+{
+    int maj_index = 0, count = 1;
+    for (int i = 1; i < size; i++) {
+        if (a[maj_index] == a[i])
+            count++;
+        else
+            count--;
+        if (count == 0) {
+            maj_index = i;
+            count = 1;
+        }
+    }
+    return a[maj_index];
+}
+
+/* Function to check if the candidate
+   occurs more than n/2 times */
+bool isMajority(int a[], int size, int cand)
+{
+    int count = 0;
+    for (int i = 0; i < size; i++)
+
+        if (a[i] == cand)
+            count++;
+
+    if (count > size / 2)
+        return 1;
+
+    else
+        return 0;
+}
+
+/* Function to print Majority Element */
+void printMajority(int a[], int size)
+{
+    /* Find the candidate for Majority*/
+    int cand = findCandidate(a, size);
+
+    /* Print the candidate if it is Majority*/
+    if (isMajority(a, size, cand))
+        cout << " " << cand << " ";
+
+    else
+        cout << "No Majority Element";
+}
+``` 
+
+---------------------------------------------------------------
+## 9. Searching in an array where adjacent differ by at most k
+
+
+
+---------------------------------------------------------------
+## 10. find a pair with a given difference
+
+naive: o(n^2)
+efficient: o(nlogn)
+```cpp
+bool findPair(int arr[], int size, int n){
+    sort(arr,arr+size);
+    int i=0,j=1;
+    while(i<size && j<size){
+        if(arr[j]-arr[i]==n)return true;
+        else if(arr[j]-arr[i]<n)j++;
+        else i++;
+    }
+    return false;
+}
+```
+
+---------------------------------------------------------------
+## 11. find four elements that sum to a given value
+
+---------------------------------------------------------------
+## 12. maximum sum such that no 2 elements are adjacent
+
+---------------------------------------------------------------
+## 13. Count triplet with sum smaller than a given value
+
+---------------------------------------------------------------
+## 14. merge 2 sorted arrays
+
+---------------------------------------------------------------
+## 15. print all subarrays with 0 sum
+
+---------------------------------------------------------------
+## 16. Product array Puzzle
+
+---------------------------------------------------------------
+## 17. Sort array according to count of set bits
+
+---------------------------------------------------------------
+## 18. minimum no. of swaps required to sort the array
+
+---------------------------------------------------------------
+## 19. Bishu and Soldiers
+
+---------------------------------------------------------------
+## 20. Rasta and Kheshtak
+
+---------------------------------------------------------------
+## 21. Kth smallest number again
+
+---------------------------------------------------------------
+## 22. Find pivot element in a sorted array
+
+---------------------------------------------------------------
+## 23. K-th Element of Two Sorted Arrays
+
+---------------------------------------------------------------
+## 24. Aggressive cows
+
+---------------------------------------------------------------
+## 25. Book Allocation Problem
+
+---------------------------------------------------------------
+## 26. EKOSPOJ:
+
+---------------------------------------------------------------
+## 27. Job Scheduling Algo
+
+---------------------------------------------------------------
+## 28. Missing Number in AP
+
+---------------------------------------------------------------
+## 29. Smallest number with atleastn trailing zeroes infactorial
+
+---------------------------------------------------------------
+## 30. Painters Partition Problem:
+
+---------------------------------------------------------------
+## 31. ROTI-Prata SPOJ
+
+---------------------------------------------------------------
+## 32. DoubleHelix SPOJ
+
+---------------------------------------------------------------
+## 33. Subset Sums
+
+---------------------------------------------------------------
+## 34. Findthe inversion count
+
+---------------------------------------------------------------
+## 35. Implement Merge-sort in-place
+
+---------------------------------------------------------------
+## 36. Partitioning and Sorting Arrays with Many Repeated Entries
+
+---------------------------------------------------------------
