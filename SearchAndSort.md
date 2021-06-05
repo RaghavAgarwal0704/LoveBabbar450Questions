@@ -166,6 +166,30 @@ bool findPair(int arr[], int size, int n){
 ---------------------------------------------------------------
 ## 11. find four elements that sum to a given value
 
+```cpp
+vector<vector<int>> fourSum(vector<int> &arr, int k) {
+    sort(arr.begin(), arr.end());
+    int n = arr.size();
+    vector<vector<int>> ans;
+
+    for (int i = 0; i < n - 2; i++) {
+        for (int j = i + 1; j < n - 1; j++) {
+            int reqd = k - arr[i] - arr[j];
+            int l = j + 1, r = n - 1;
+            while (l < r) {
+                if (arr[l] + arr[r] == reqd) ans.push_back({arr[i], arr[j], arr[l], arr[r]});
+                if (arr[l] + arr[r] < reqd)
+                    l++;
+                else
+                    r--;
+            }
+        }
+    }
+    set<vector<int>> s(ans.begin(), ans.end());
+    return vector<vector<int>>(s.begin(), s.end());
+}
+```
+
 ---------------------------------------------------------------
 ## 12. maximum sum such that no 2 elements are adjacent
 
