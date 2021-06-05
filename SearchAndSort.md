@@ -199,6 +199,34 @@ vector<vector<int>> fourSum(vector<int> &arr, int k) {
 ---------------------------------------------------------------
 ## 14. merge 2 sorted arrays
 
+Time : O(n*m); Space : O(1)
+```cpp
+void merge(int arr1[], int arr2[], int n, int m) {
+    
+    
+    int i = 0, j = 0;
+    for (i = m - 1; i >= 0; i--) {
+        int k = upper_bound(arr1, arr1 + n, arr2[i]) - arr1;
+        if (k < n) {
+            int temp = arr1[n - 1];
+            for (j = n - 1; j > k; j--) arr1[j] = arr1[j - 1];
+            arr1[k] = arr2[i];
+            arr2[i] = temp;
+        }
+    }
+}
+```
+
+Time : O(nlogn + mlogm) 
+```cpp
+void merge(int arr1[], int arr2[], int n, int m) {
+    for (int i = 0; i < min(n, m); i++)
+        if (arr1[n - i - 1] > arr2[i]) swap(arr1[n - i - 1], arr2[i]);
+    sort(arr1, arr1 + n);
+    sort(arr2, arr2 + m);
+}
+```
+
 ---------------------------------------------------------------
 ## 15. print all subarrays with 0 sum
 
