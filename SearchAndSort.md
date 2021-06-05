@@ -232,6 +232,24 @@ void merge(int arr1[], int arr2[], int n, int m) {
 
 ---------------------------------------------------------------
 ## 16. Product array Puzzle
+```cpp
+vector<long long int> productExceptSelf(vector<long long int>& nums, int n) {
+    vector<long long int> temp(n);
+    if (n == 1) return vector<long long int>({1});
+
+    temp[0] = nums[0];
+    for (int i = 1; i < n; i++) temp[i] = temp[i - 1] * nums[i];
+
+    vector<long long int> temp2(n);
+    temp2[n - 1] = nums[n - 1];
+    for (int i = n - 2; i >= 0; i--) temp2[i] = temp2[i + 1] * nums[i];
+    
+    nums[0] = temp2[1];
+    nums[n - 1] = temp[n - 2];
+    for (int i = 1; i < n - 1; i++) nums[i] = temp[i - 1] * temp2[i + 1];
+    return nums;
+}
+```
 
 ---------------------------------------------------------------
 ## 17. Sort array according to count of set bits
