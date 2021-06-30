@@ -72,7 +72,7 @@ Node* reverse(struct Node* head, int k)
 {
     Node* prev = NULL;
     Node* curr = head;
-    Node* temp = NULL;
+    Node* next = NULL;
     Node* tail = NULL;
     Node* newHead = NULL;
     Node* join = NULL;
@@ -86,10 +86,10 @@ Node* reverse(struct Node* head, int k)
   
         // Reverse group of k nodes of the linked list
         while (curr && t--) {
-            temp = curr->next;
+            next = curr->next;
             curr->next = prev;
             prev = curr;
-            curr = temp;
+            curr = next;
         }
   
         // Sets the new head of the input list
