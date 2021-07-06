@@ -901,7 +901,43 @@ int knapSack(int n, int W, int val[], int wt[]) {
 ## 40. Partition problem
 
 ----------------------------------------------
-## 41. Longest Palindromic Subsequence
+## 41. Longest Palindromic Subsequence (Length + String)
+
+https://leetcode.com/problems/longest-palindromic-subsequence/
+
+```cpp
+int longestPalindromeSubseq(string s) {
+    string p = s;
+    reverse(p.begin(), p.end());
+    int n = s.length();
+    vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+    // ans= LCS(s,reverse(s))
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (s[i - 1] == p[j - 1])
+                dp[i][j] = 1 + dp[i - 1][j - 1];
+            else
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+        }
+    }
+    int i = n, j = n;
+    string ans = "";
+    while (i > 0 && j > 0 && dp[i][j] != 0) {
+        if (s[i - 1] == p[j - 1]) {
+            ans = s[i - 1] + ans;
+            i--;
+            j--;
+        } else {
+            if (dp[i - 1][j] > dp[i][j - 1])
+                i--;
+            else
+                j--;
+        }
+    }
+    cout << ans << endl;
+    return dp[n][n];
+}
+```
 
 ----------------------------------------------
 ## 42. Count All Palindromic Subsequence in a given String
