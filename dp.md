@@ -1019,6 +1019,43 @@ int lcs(string x,string y,int m,int n){
         return m+n-lcs(X,Y,m,n);
     }
 ```
+
+or
+```cpp
+int shortestCommonSupersequence(string X, string Y, int m, int n) {
+    vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+    for (int i = 0; i <= m; i++) dp[i][0] = i;
+    for (int i = 0; i <= n; i++) dp[0][i] = i;
+
+    for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+            if (X[i - 1] == Y[j - 1])
+                dp[i][j] = 1 + dp[i - 1][j - 1];
+            else
+                dp[i][j] = 1 + min(dp[i][j - 1], dp[i - 1][j]);
+        }
+    }
+    //printing the superseq
+    int i = m, j = n;
+    string ans = "";
+    while (i > 0 && j > 0) {
+        if (X[i - 1] == Y[j - 1]) {
+            ans = X[i - 1] + ans;
+            i--;
+            j--;
+        } else {
+            if (dp[i - 1][j] < dp[i][j - 1])
+                ans = X[--i] + ans;
+            else
+                ans = Y[--j] + ans;
+        }
+    }
+    while (i > 0) ans = X[--i] + ans;
+    while (j > 0) ans = Y[--j] + ans;
+    cout << ans << endl;
+    return dp[m][n];//returning the length
+}
+```
 -----------------------------------------------
 ## 62. min no of insertions and deletions to convert a string into other string 
 del=m-len_lcs,  ins=n-len_lcs, total = del+ins
