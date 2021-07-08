@@ -720,6 +720,24 @@ int LCSof3(string s1, string s2, string s3, int x, int y, int z) {
 
 ----------------------------------------------
 ## 23. Egg Dropping Problem
+```cpp
+int util(int i, int j, int e) {
+    if (j - i + 1 == 0 || j - i + 1 == 1) return j - i + 1;
+    if (e == 1) return j - i + 1;
+    if (e == 0) return 0;
+    if (dp[e][j - i + 1] != -1) return dp[e][j - i + 1];
+    int ans = INT_MAX;
+    for (int k = i; k <= j; k++) {
+        ans = min(ans, 1 + max(util(i, k - 1, e - 1), util(k + 1, j, e)));
+    }
+    return dp[e][j - i + 1] = ans;
+}
+int dp[202][202];
+int eggDrop(int n, int k) {
+    memset(dp, -1, sizeof(dp));
+    return util(1, k, n);
+}
+```
 
 ----------------------------------------------
 ## 24. Maximum Length Chain of Pairs
