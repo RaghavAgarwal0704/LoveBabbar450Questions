@@ -540,6 +540,26 @@ vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
     }
     return ans;
 }
+ ------or------
+ vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+        {
+            //code here.
+            int i=0,j=0,k=0;
+            vector<int>vec;
+            int prev=INT_MIN;
+            while(i<n1 && j<n2 && k<n3){
+                if(A[i]==B[j] && B[j]==C[k]){
+                    if(prev==A[i]){
+                        i++;j++;k++;
+                    }
+                    else {vec.push_back(A[i]);prev=A[i];}
+                }   
+                else if(A[i]<B[j])i++;
+                else if(B[j]<C[k])j++;
+                else k++;
+            }
+            return vec;
+        }
 
 ------------------------------------------------------------------
 20. rearrange array with alternate positive and negative with o(1) extra space.
